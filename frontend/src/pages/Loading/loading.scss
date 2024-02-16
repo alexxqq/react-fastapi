@@ -1,0 +1,20 @@
+
+ .loader {
+    border: 8px solid #3498db; /* Loader border color */
+    border-top: 8px solid #fff; /* Loader border color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Rotation animation */
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .wrapper-loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }

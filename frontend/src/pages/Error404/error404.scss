@@ -1,0 +1,28 @@
+.error-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(
+        45deg,
+        #0e0f17,
+        #10131c,
+        #1b1e2c,
+        #232635
+    ); /* Complex gradient background */
+}
+
+.error-box h1 {
+    font-size: 150px;
+    animation: bounce 1s infinite alternate; /* Bouncing animation */
+    color: #ffffff; /* Text color */
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}

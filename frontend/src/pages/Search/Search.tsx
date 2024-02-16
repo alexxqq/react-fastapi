@@ -1,0 +1,53 @@
+import './search.scss';
+import { Nav } from '../../components/Nav/Nav';
+import {Task} from '../../components/Task/Task';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import taskService from '../../services/task.serive';
+import useRenderVerification from '../../Hooks/useVerification';
+import { Loading } from '../Loading/Loading';
+export const Search = () =>{
+  const [searchResults, setSearchResults] = useState<any>([]);
+  const  query:any  = useParams(); // Access the query parameter from the path
+  const shouldRender= useRenderVerification();
+  if (shouldRender ===null){
+    <Loading/>
+  }
+  const search = async(query:string) =>{
+    const result = await taskService.search(query)
+    return result
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await search(query.query);
+        setSearchResults(response);
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+      }
+    };
+
+    fetchData();
+  }, [query]);
+
+
+    return(
+<div className='track-hui'>
+<div>
+  <Nav shouldRender={shouldRender}></Nav>
+  {searchResults.map((item:any) => (
+                <Task shouldRender={shouldRender}
+                    name={item.name}
+                    description={item.description}
+                    date={item.date}
+                    tags={['test']}
+                    user='test'
+                    key={item.id}
+                    id={item.id}
+                />
+            ))}
+</div>
+</div>
+      );
+}
+

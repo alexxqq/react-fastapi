@@ -1,0 +1,71 @@
+// chat.scss
+
+.chat {
+    background: linear-gradient(45deg, #0e0f17, #10131c, #1b1e2c, #232635);
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+  
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+  
+    h2 {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+  
+    form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+  
+      input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+      }
+  
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #375272;
+        color: #ffffff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #9ba8b8;
+        }
+      }
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      overflow-y: auto;
+      max-height: 200px;
+  
+      li {
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+      }
+    }
+  }
+  
