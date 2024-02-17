@@ -1,11 +1,12 @@
 from datetime import datetime
+from .schemas import AddTask
 from sqlalchemy import select, delete as delete_sql
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi import APIRouter, Request, Depends, Form, Response
+from fastapi import APIRouter, Depends
 from database import User, get_async_session
 from auth.base_config import fastapi_users
 from .models import Task, Tag, Task_Tag
-from pydantic import BaseModel
+import json
 router = APIRouter(
     prefix="/tasks",
     tags=["Tasks"]
@@ -19,7 +20,10 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
     query = select(Task, User).join(User).where(Task.user_id == User.id)
 
     result = await session.execute(query)
+    # data  = [row._asdict() for row in result]
+    
 
+    
     rows = result.fetchall()
 
     tasks = []
@@ -46,10 +50,7 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
     return tasks
 
 
-class AddTask(BaseModel):
-    name: str
-    description: str
-    tags: str
+
 
 
 @router.post('/')
