@@ -6,12 +6,7 @@ from database import User
 from typing import List
 metadata = MetaData()
 Base = declarative_base()
-class Operation(Base):
-    __tablename__ = 'operation'
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    date:Mapped[datetime] = mapped_column(TIMESTAMP,nullable=False)
-    type :Mapped[str] =mapped_column(String,nullable=False)
-    
+
 class Task_Tag(Base):
   __tablename__ = 'task_tag'
   tag_id: Mapped[int] = mapped_column(
@@ -38,6 +33,9 @@ class Task(Base):
     )
 
     user_id: Mapped[int] = mapped_column(ForeignKey(User.id,ondelete='CASCADE'))
+    
+    def __str__(self):
+       return {'id':self.id,'name':self.name,'description':self.description,'date':self.date,'user_id':self.user_id,'tags':self.tags}
 
 
 class Tag(Base):
