@@ -21,8 +21,9 @@ export class TaskService {
         return this.httpService.post<string, addTask>(TaskPath.Create, data, header)
     }
 
-    async delete() {
-        return this.httpService.delete<string>(TaskPath.Delete)
+    async delete(query:number) {
+        const path = `${TaskPath.Search}/${query}`
+        return this.httpService.delete<string>(path)
     }
     async search(query:string) {
       const path = `${TaskPath.Search}/${query}`

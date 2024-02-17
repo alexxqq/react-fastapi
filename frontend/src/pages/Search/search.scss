@@ -1,0 +1,29 @@
+/* SearchResults.css */
+.search-results-container {
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1s ease-in-out; /* Add fade-in animation */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .search-result {
+    margin-top: 15px;
+  }
+  
+  .no-results-message {
+    font-size: 18px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out; /* Add fade-in animation */
+  }

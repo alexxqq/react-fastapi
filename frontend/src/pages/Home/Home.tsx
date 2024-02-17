@@ -5,8 +5,8 @@ import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 export const Home = () => {
     const shouldRender = useRenderVerification()
-    if (shouldRender === null){
-        return(<Loading></Loading>);
+    if (shouldRender === null) {
+        return <Loading></Loading>
     }
     return (
         <div className='track-hui'>
