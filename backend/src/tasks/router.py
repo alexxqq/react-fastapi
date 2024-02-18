@@ -26,7 +26,6 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
 
     rows = result.fetchall()
     tasks = []
-    print(rows)
     for task, user_email, user_id, username, tag_id, tag_name in rows:
         # If the task is not already in the tasks list, add it
         if task.id not in {t.id for t in tasks}:
@@ -113,9 +112,6 @@ async def search(query: str, session: AsyncSession = Depends(get_async_session))
             tasks[-1].tag.append(tag_name)
 
     return tasks
-
-    return rows
-
 
 @router.delete('/{id}')
 async def delete(id: int, user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):

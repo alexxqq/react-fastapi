@@ -3,13 +3,17 @@
 .chat {
     background: linear-gradient(45deg, #0e0f17, #10131c, #1b1e2c, #232635);
     color: #ffffff;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 80%;
     max-width: 600px;
-    margin: 50px auto;
+    margin: 20px auto;
     text-align: center;
+    height: 70dvh;
+
   
     h1 {
       font-size: 2em;
@@ -56,7 +60,7 @@
       padding: 0;
       margin: 0;
       overflow-y: auto;
-      max-height: 200px;
+      max-height: 400px; /* Increase this value to make the ul taller */
   
       li {
         background-color: rgba(255, 255, 255, 0.1);
@@ -68,4 +72,28 @@
       }
     }
   }
-  
+/* Hide the default scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 10px; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #2d6779, #382877); 
+  border-radius: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #232635;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #382877, #2d6779); 
+}
+
+/* Track on hover */
+::-webkit-scrollbar-track:hover {
+  background-color: #232635; 
+}

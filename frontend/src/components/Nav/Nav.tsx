@@ -7,10 +7,9 @@ export const Nav = (props:any) => {
     const [input, setInput] = useState('')
     const shouldRender = props.shouldRender
     if (shouldRender === null) {
-        // Loading state or any other logic while waiting for verification
+        
         return <Loading></Loading>;
       }
-      console.log('NAv Render-> ',shouldRender)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.target.value)

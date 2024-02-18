@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { Nav } from '../../components/Nav/Nav'
 import './chat.scss'
 import useRenderVerification from '../../Hooks/useVerification'
@@ -12,19 +12,31 @@ export const Chat = () => {
     const shouldRender: any = useRenderVerification()
     const [messages, setMessages] = useState<Message[]>([])
     const [message, setMessage] = useState<string>()
-    console.log(shouldRender)
+    const [ws, setWs] = useState<WebSocket | null>(null)
+    const chatContainerRef = useRef<HTMLUListElement>(null);
 
-    const ws = new WebSocket(`ws://localhost:8000/chat/ws/${shouldRender?.email}`)
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value)
     }
 
     const handleMessage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (message) {
+        if (message && ws) {
             ws.send(message)
         }
+        
     }
+
+    useEffect(() => {
+        if (shouldRender) {
+            const wsInstance = new WebSocket(`ws://localhost:8000/chat/ws/${shouldRender.email}`)
+            setWs(wsInstance)
+        }
+        fnccc()
+    }, [shouldRender])
+    useLayoutEffect(() => {
+        scrollToBottom();
+      }, [messages]);
     const fnccc = () => {
         const fetchData = async () => {
             try {
@@ -40,15 +52,19 @@ export const Chat = () => {
 
         const handleMessageReceived = (event: any) => {
             const newMessage = { message: event.data }
+            console.log(newMessage)
             setMessages((prevMessages) => [...prevMessages, newMessage])
         }
 
-        ws.onmessage = handleMessageReceived
+        if (ws) {
+            ws.onmessage = handleMessageReceived
+        }
     }
-
-    useEffect(() => {
-        fnccc()
-    }, [])
+    const scrollToBottom = () => {
+        if (chatContainerRef.current) {
+          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+      };
     if (shouldRender === null) {
         return <Loading />
     }
@@ -56,12 +72,11 @@ export const Chat = () => {
         window.location.href = 'error404'
         return null
     }
-
     return (
         <div className='track-hui'>
             <Nav shouldRender={shouldRender}></Nav>
             <div className='chat'>
-                <ul id='messages' className='mt-4'>
+                <ul id='messages' className='mt-4' ref={chatContainerRef}>
                     {messages.map((message) => (
                         <li key={message.message}>{message.message}</li>
                     ))}
