@@ -3,10 +3,17 @@
     justify-content: center;
     align-content: center;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+        padding-left:20px;
+        padding-right: 40px;
+    }
+
 }
 form {
     display: flex;
     flex-direction: column;
+
 }
 .input-fields {
     padding-top: 30px;

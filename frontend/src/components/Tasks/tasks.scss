@@ -1,6 +1,11 @@
-.tasks{
+.tasks {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+        flex-direction: column;
+    }
 }
