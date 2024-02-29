@@ -112,3 +112,10 @@ async def delete(id: int, user: User = Depends(current_user), session: AsyncSess
     await session.commit()
 
     return {'status': 'succesful delete'}
+
+
+@router.delete('/zalupa')
+def zalupa():
+
+
+    return {'test': 'successful'}
