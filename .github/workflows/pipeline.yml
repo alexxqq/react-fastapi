@@ -53,6 +53,9 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add ec2React
           cd
+          
+          bash install_nvm.sh
+
           nvm install node 20.11.1
           cd deploy
           cd react-fastapi
