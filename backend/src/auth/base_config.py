@@ -5,7 +5,7 @@ from fastapi_users.authentication import JWTStrategy
 from auth.manager import get_user_manager
 from auth.models import User
 SECRET_AUTH ='secret'
-cookie_transport = CookieTransport(cookie_name="bonds", cookie_max_age=3600,cookie_secure=False)
+cookie_transport = CookieTransport(cookie_name="bonds", cookie_samesite="none", cookie_max_age=3600,cookie_secure=True)
 
 
 def get_jwt_strategy() -> JWTStrategy:

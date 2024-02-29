@@ -30,7 +30,13 @@ origins = ["http://localhost:5173",
            "http://localhost:8000",
            "http://127.0.0.1:5173",
            "http://127.0.0.1:5174",
-           "http://51.20.6.182"
+           "http://51.20.6.182",
+           "https://51.20.60.12",
+           "http://51.20.60.12",
+           "http://deployment.pp.ua",
+           "https://deployment.pp.ua",
+           "https://alexxqqq.space",
+           "http://alexxqqq.space",
            ]
 
 current_user = fastapi_users.current_user()
@@ -39,8 +45,12 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET","POST","OPTIONS","HEAD","PUT","PATCH"],
+    allow_headers=["Access-Control-Allow-Headers",
+                   'Content-Type',
+                   'Authorization',
+                   'Access-Control-Allow-Origin',
+                   "Set-Cookie"],
 )
 
 app.include_router(
