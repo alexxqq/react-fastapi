@@ -11,7 +11,7 @@ export const Home = () => {
     return (
         <div className='track-hui'>
             <Nav shouldRender={shouldRender}></Nav>
-            <h1> no WORKS!!!!!</h1>
+            <h1> no! WORKS!!!!!</h1>
             <Tasks shouldRender={shouldRender}></Tasks>
         </div>
     )
