@@ -9,10 +9,10 @@ export const SignUp = () => {
         email: '',
         password: '',
     })
-    const HandleFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+    const HandleFormSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
         try{
-            authService.registration(formData)
+            await authService.registration(formData)
             window.location.href = '/'
         }
         catch(e:any){
