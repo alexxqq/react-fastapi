@@ -54,11 +54,9 @@ jobs:
           ssh-add ec2React
           cd
           
-          bash install_nvm.sh
 
           npm install node@latest
 
-          node -v
           cd deploy
           cd react-fastapi
           git pull origin master
