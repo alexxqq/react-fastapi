@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Nav } from '../../components/Nav/Nav'
 import './signup.scss'
+import authService from '../../services/auth.service'
 
 export const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,14 @@ export const SignUp = () => {
     })
     const HandleFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
+        try{
+            authService.registration(formData)
+            window.location.href = '/'
+        }
+        catch(e:any){
+            window.alert(`Error: ${e}`)
+        }
+        
     }
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
