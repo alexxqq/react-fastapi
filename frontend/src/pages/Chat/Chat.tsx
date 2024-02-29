@@ -3,6 +3,8 @@ import { Nav } from '../../components/Nav/Nav'
 import './chat.scss'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
+import chatService from '../../services/chat.service'
+import { ChatEndpoint } from '../../common/constants/chat.endpoint' 
 
 interface Message {
     message: string
@@ -14,7 +16,7 @@ export const Chat = () => {
     const [message, setMessage] = useState<string>()
     console.log(shouldRender)
 
-    const ws = new WebSocket(`ws://localhost:8000/chat/ws/${shouldRender?.email}`)
+    const ws = new WebSocket(`${ChatEndpoint.WebSocket}/${shouldRender?.email}`)
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value)
     }
@@ -28,7 +30,7 @@ export const Chat = () => {
     const fnccc = () => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/chat/last_messages')
+                const response:any = await chatService.getLastMessages()
                 const data = await response.json()
                 setMessages(data)
             } catch (error) {
