@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name ReactDeploy
+      - name: ReactDeploy
         env:
           SSH_KEY: ${{secrets.FASTAPI_KEY_SSH}}
         run: |
