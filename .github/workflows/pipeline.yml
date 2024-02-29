@@ -56,7 +56,7 @@ jobs:
           
           bash install_nvm.sh
 
-          nvm install node 20.11.1
+          npm install node 20.11.1
 
           node -v
           cd deploy
