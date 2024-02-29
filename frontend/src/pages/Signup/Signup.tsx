@@ -11,6 +11,7 @@ export const SignUp = () => {
     })
     const HandleFormSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
+        console.log(formData)
         try{
             await authService.registration(formData)
             window.location.href = '/'
