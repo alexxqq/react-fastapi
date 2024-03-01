@@ -55,6 +55,7 @@ jobs:
           cd &&
 
           curl -qL https://www.npmjs.com/install.sh | sh &&
+          sudo npm install node@20.11.1 &&
 
           node -v &&
           npm -v &&
