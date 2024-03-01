@@ -54,8 +54,6 @@ jobs:
           ssh-add ec2React &&
           cd &&
           
-
-          sudo npm install node@latest &&
           cd deploy &&
           cd react-fastapi &&
           git pull origin master &&
