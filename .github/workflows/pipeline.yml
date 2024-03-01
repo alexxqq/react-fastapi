@@ -54,10 +54,7 @@ jobs:
           ssh-add ec2React &&
           cd &&
 
-          sudo apt-get update -y
-          sudo apt-get install npm -y
-
-          npm install node@20.11.1 &&
+          curl -qL https://www.npmjs.com/install.sh | sh &&
 
           node -v &&
           npm -v &&
