@@ -53,7 +53,7 @@ jobs:
           eval $(ssh-agent -s) &&
           ssh-add ec2React &&
           cd &&
-          
+          sudo npm install -g typescript &&
           cd deploy &&
           cd react-fastapi &&
           git pull origin master &&
