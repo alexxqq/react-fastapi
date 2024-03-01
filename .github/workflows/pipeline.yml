@@ -56,7 +56,7 @@ jobs:
           
 
           npm install node@latest &&
-
+          npm install typescript -g &&
           cd deploy &&
           cd react-fastapi &&
           git pull origin master &&
