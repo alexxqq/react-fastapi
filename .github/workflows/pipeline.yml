@@ -54,8 +54,11 @@ jobs:
           ssh-add ec2React &&
           cd &&
 
-          sudo apt update &&
-          sudo apt install nodejs &&
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh &&
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash &&
+          source ~/.bashrc &&
+          nvm install v20.11.1 &&
+
           sudo npm install -g typescript &&
           cd deploy &&
           cd react-fastapi &&
