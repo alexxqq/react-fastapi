@@ -1,10 +1,11 @@
 import './task.scss'
 import { task } from '../../common/types/type'
-import { HttpService } from '../../services/http.service'
+import taskService from '../../services/task.serive'
 export const Task = (props: task) => {
 
     const delete_task = async (id : number) =>{
-        await new HttpService().delete(`tasks/${id}`)
+        
+        await taskService.delete(id)
         window.location.href = '/'
 
     }

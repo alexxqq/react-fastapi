@@ -21,7 +21,7 @@ export class TaskService {
         return this.httpService.post<string, addTask>(TaskPath.Create, data, header)
     }
 
-    async delete(
+    async delete(id:number,
         header: Record<string, unknown> = {
             withCredentials: true,
             headers: {
@@ -30,7 +30,7 @@ export class TaskService {
         },
         
         ) {
-        return this.httpService.delete<string>(TaskPath.Delete,header)
+        return this.httpService.delete<string>(`${TaskPath.Delete}/${id}`,header)
     }
     async search(query: string) {
         const path = `${TaskPath.Search}/${query}`
