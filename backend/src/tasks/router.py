@@ -26,7 +26,6 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
 
     rows = result.fetchall()
     tasks = []
-    print(rows)
     for task, user_email, user_id, username, tag_id, tag_name in rows:
         # If the task is not already in the tasks list, add it
         if task.id not in {t.id for t in tasks}:
@@ -44,7 +43,7 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
 
 @router.post('/')
 async def add_task(task: AddTask, user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):
-    print(task)
+    print('add task: ',task)
     tags = task.tags
     name = task.name
     description = task.description
