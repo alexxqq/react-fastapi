@@ -50,8 +50,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i "key1.pem" ubuntu@ec2-51-20-60-12.eu-north-1.compute.amazonaws.com ' 
            
           cd .ssh &&
-          eval $(ssh-agent -s) &&
-          ssh-add ec2React &&
+          eval $(ssh-agent -s) 
+          ssh-add ec2React
           cd &&
            
  
