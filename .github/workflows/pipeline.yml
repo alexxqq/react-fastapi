@@ -59,6 +59,8 @@ jobs:
           cd react-fastapi 
           git pull origin master 
           cd frontend 
+          npm -v
+          nvm -v
           npm run build 
           sudo rm -rf /var/www/dist/ 
           sudo cp -r dist/ /var/www/ 
