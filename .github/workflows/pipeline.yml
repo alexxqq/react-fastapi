@@ -49,20 +49,19 @@ jobs:
           chmod 400 key1.pem 
           ssh -o StrictHostKeyChecking=no -i "key1.pem" ubuntu@ec2-51-20-60-12.eu-north-1.compute.amazonaws.com ' 
            
-          cd .ssh 
-          eval $(ssh-agent -s) 
-          ssh-add ec2React 
-          cd 
+          cd .ssh &&
+          eval $(ssh-agent -s) &&
+          ssh-add ec2React &&
+          cd &&
            
  
-          npm install node@latest 
+          npm install node@latest &&
  
-          cd deploy 
-          cd react-fastapi 
-          git pull origin master 
-          cd frontend 
-          npm run build 
-          sudo rm -rf /var/www/dist/ 
-          sudo cp -r dist/ /var/www/ 
-          sudo systemctl restart nginx 
+          cd deploy &&
+          cd react-fastapi &&
+          git pull origin master &&
+          cd frontend &&
+          npm run build &&
+          sudo rm -rf /var/www/dist/ &&
+          sudo cp -r dist/ /var/www/ &&
           '
