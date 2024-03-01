@@ -57,7 +57,7 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install npm -y
 
-          npm install node@latest &&
+          npm install node@20.11.1 &&
 
           node -v &&
           npm -v &&
