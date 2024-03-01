@@ -55,7 +55,8 @@ jobs:
           cd &&
 
           curl -qL https://www.npmjs.com/install.sh | sh &&
-          sudo npm install node@20.11.1 &&
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&
+          sudo apt-get install -y nodejs
 
           node -v &&
           npm -v &&
