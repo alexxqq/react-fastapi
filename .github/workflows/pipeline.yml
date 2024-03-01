@@ -55,8 +55,6 @@ jobs:
           cd 
            
  
-          npm install node@latest 
- 
           cd deploy 
           cd react-fastapi 
           git pull origin master 
