@@ -53,8 +53,9 @@ jobs:
           eval $(ssh-agent -s) &&
           ssh-add ec2React &&
           cd &&
-          source ~/.nvm/nvm.sh
-          sudo nvm use 20.11.1
+
+          sudo apt update &&
+          sudo apt install nodejs &&
           sudo npm install -g typescript &&
           cd deploy &&
           cd react-fastapi &&
