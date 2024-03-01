@@ -53,6 +53,7 @@ jobs:
           eval $(ssh-agent -s) &&
           ssh-add ec2React &&
           cd &&
+          sudo nvm use 20.11.1
           sudo npm install -g typescript &&
           cd deploy &&
           cd react-fastapi &&
