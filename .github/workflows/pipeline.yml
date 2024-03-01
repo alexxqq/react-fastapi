@@ -53,12 +53,10 @@ jobs:
           eval $(ssh-agent -s) &&
           ssh-add ec2React &&
           cd &&
-
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh &&
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash &&
-          source ~/.bashrc &&
-          nvm install v20.11.1 &&
-
+          sudo apt-get upgrade -y &&
+          sudo apt-get install nodejs &&
+          node -v &&
+          npm -v &&
           sudo npm install -g typescript &&
           cd deploy &&
           cd react-fastapi &&
