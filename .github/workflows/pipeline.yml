@@ -54,6 +54,9 @@ jobs:
           ssh-add ec2React &&
           cd &&
 
+          sudo apt-get update -y
+          sudo apt-get install npm -y
+
           npm install node@latest &&
 
           node -v &&
