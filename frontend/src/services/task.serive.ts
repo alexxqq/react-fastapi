@@ -21,14 +21,22 @@ export class TaskService {
         return this.httpService.post<string, addTask>(TaskPath.Create, data, header)
     }
 
-    async delete() {
-        return this.httpService.delete<string>(TaskPath.Delete)
+    async delete(
+        header: Record<string, unknown> = {
+            withCredentials: true,
+            headers: {
+                accept: 'application/json',
+            },
+        },
+        
+        ) {
+        return this.httpService.delete<string>(TaskPath.Delete,header)
     }
-    async search(query:string) {
-      const path = `${TaskPath.Search}/${query}`
-      return this.httpService.get<string>(path)
-  }
-  }
+    async search(query: string) {
+        const path = `${TaskPath.Search}/${query}`
+        return this.httpService.get<string>(path)
+    }
+}
 
 const taskService = new TaskService(new HttpService())
 export default taskService

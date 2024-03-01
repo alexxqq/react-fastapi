@@ -29,8 +29,8 @@ export class HttpService {
         return res.data
     }
 
-    async delete<T>(url: string): Promise<T> {
-        const res = await axios.delete<T>(this.getFullUrl(url), { withCredentials: true })
+    async delete<T>(url: string, headers: any): Promise<T> {
+        const res = await axios.delete<T>(this.getFullUrl(url), headers)
 
         return res.data
     }

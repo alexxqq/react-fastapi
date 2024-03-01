@@ -54,7 +54,7 @@ async def add_task(task: AddTask, user: User = Depends(current_user), session: A
 
     for tag_name in tag_names:
         # Check if the tag already exists in the database
-        tag = await session.execute(select(Tag).filter(Tag.tag_name == tag_name)).limit(1)
+        tag = await session.execute(select(Tag).filter(Tag.tag_name == tag_name))
         tag = tag.scalar_one_or_none()
 
         if not tag:

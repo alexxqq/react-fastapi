@@ -32,6 +32,7 @@ export const Chat = () => {
             try {
                 const response:any = await chatService.getLastMessages()
                 const data = await response.json()
+                console.log('setMessages:', data)
                 setMessages(data)
             } catch (error) {
                 console.error('Error fetching data:', error)
