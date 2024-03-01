@@ -54,13 +54,12 @@ jobs:
           ssh-add ec2React 
           cd 
            
- 
+          npm install node@latest
           cd deploy 
           cd react-fastapi 
           git pull origin master 
           cd frontend 
           npm -v
-          nvm -v
           npm run build 
           sudo rm -rf /var/www/dist/ 
           sudo cp -r dist/ /var/www/ 
