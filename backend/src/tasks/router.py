@@ -43,7 +43,6 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
 
 @router.post('/add_task')
 async def add_task(task: AddTask, user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):
-    print('add task: ',task)
     tags = task.tags
     name = task.name
     description = task.description

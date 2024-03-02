@@ -21,6 +21,7 @@ export const MainRouter = () => (
             <Route path={Path.ACCOUNT} component={Account} /> 
             <Route path={Path.ADDTASK} component={AddTask} /> 
             <Route path={Path.SEARCH} component={Search} />
+            <Route path='/search' component={Search} />
             <Route path={Path.CHAT} component={Chat} />
             <Route path="*" component={Error404} /> 
         </Switch>
