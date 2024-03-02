@@ -88,12 +88,28 @@ def verify(user: User = Depends(current_user)):
 
 @router.get('/search/{query}')
 async def search(query: str, session: AsyncSession = Depends(get_async_session)):
-    query = select(Task).where(Task.name == query)
-    result = await session.execute(query)
-    rows = result.fetchall()
-    rows = [i[0] for i in rows]
+    query = select(Task, User.email, User.id, User.username, Task_Tag.tag_id, Tag.tag_name).where(Task.name==query).\
+        join(User).\
+        outerjoin(Task_Tag, Task.id == Task_Tag.task_id).\
+        outerjoin(Tag, Task_Tag.tag_id == Tag.id)
 
-    return rows
+    result = await session.execute(query)
+
+    rows = result.fetchall()
+    tasks = []
+    for task, user_email, user_id, username, tag_id, tag_name in rows:
+        # If the task is not already in the tasks list, add it
+        if task.id not in {t.id for t in tasks}:
+            task.user = {'username': username,
+                         'email': user_email, 'id': user_id}
+            task.tag = []  # Initialize the tag list for the task
+            tasks.append(task)
+
+        # If there is a tag for the current row, add it to the task's tag list
+        if tag_id is not None:
+            tasks[-1].tag.append(tag_name)
+
+    return tasks
 
 
 @router.delete('/delete/{id}')
