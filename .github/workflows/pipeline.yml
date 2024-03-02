@@ -52,16 +52,14 @@ jobs:
           cd .ssh 
           eval $(ssh-agent -s) 
           ssh-add ec2React 
-          cd 
+          cd
            
-          npm install node@latest
-          cd deploy 
-          cd react-fastapi 
-          git pull origin master 
-          cd frontend 
-          npm -v
-          node -v 
-          npm run build 
-          sudo rm -rf /var/www/dist/ 
+          npm install node@latest &&
+          cd deploy &&
+          cd react-fastapi &&
+          git pull origin master &&
+          cd frontend &&
+          npm run build &&
+          sudo rm -rf /var/www/dist/ &&
           sudo cp -r dist/ /var/www/ 
           '
