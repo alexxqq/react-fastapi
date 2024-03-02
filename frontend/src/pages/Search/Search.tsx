@@ -36,7 +36,7 @@ export const Search = () => {
                 <Nav shouldRender={shouldRender}></Nav>
                 { (searchResults.length !== 0) ? (
                   <>
-                  {searchResults.map((item: any) => (
+                  {searchResults?.map((item: any) => (
                     <Task
                         shouldRender={shouldRender}
                         name={item.name}
