@@ -70,7 +70,7 @@ async def add_task(task: AddTask, user: User = Depends(current_user), session: A
     session.add(new_task)
     await session.flush()
 
-    # Manually link the task with tags in the Task_Tag linking table!
+    # Manually link the task with tags in the Task_Tag linking table!!
     for tag in tag_objects:
         task_tag_entry = Task_Tag(tag_id=tag.id, task_id=new_task.id)
         session.add(task_tag_entry)
