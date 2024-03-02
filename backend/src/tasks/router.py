@@ -97,7 +97,7 @@ async def search(query: str, session: AsyncSession = Depends(get_async_session))
     return rows
 
 
-@router.delete('/{id}')
+@router.delete('/delete/{id}')
 async def delete(id: int, user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):
     query = select(Task).where(Task.id == id)
     result = await session.execute(query)

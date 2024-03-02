@@ -30,7 +30,7 @@ jobs:
           cd react-fastapi 
           git pull origin master 
           cd backend/src 
-          sudo docker stop FastAPI 
+          sudo docker kill FastAPI 
           sudo docker rm FastAPI 
           sudo docker rmi src-web 
           sudo docker compose up -d 
