@@ -31,7 +31,7 @@ export const Chat = () => {
         const fetchData = async () => {
             try {
                 const response:any = await chatService.getLastMessages()
-                const data = await response.json()
+                const data = await response
                 console.log('setMessages! :', data)
                 setMessages(data)
             } catch (error) {
