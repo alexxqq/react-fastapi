@@ -72,13 +72,16 @@
         font-size: 31px;
     }
 }
-
 .tags {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     margin-left: 5%;
     gap: 5%;
-    width: auto;
+    width: 12rem;
+    @media only screen and (max-width: 600px) {
+       width: fit-content;
+    }
+
 }
 
 .upper h4 {
