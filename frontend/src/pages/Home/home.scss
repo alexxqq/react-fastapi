@@ -2,7 +2,9 @@
   width: 230px;
   height: 194px;
 }
-
+html,body{
+  height: 100%;
+}
 .terminal_toolbar {
   display: flex;
   height: 30px;
