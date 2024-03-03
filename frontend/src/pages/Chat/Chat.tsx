@@ -51,21 +51,24 @@ export const Chat = () => {
 
         fetchData()
 
-        const handleMessageReceived = (event: any) => {
-            const newMessage = { message: event.data }
-            console.log(newMessage)
-            setMessages((prevMessages) => [...prevMessages, newMessage])
-        }
 
-        if (ws) {
-            ws.onmessage = handleMessageReceived
-        }
+
+
     }
     const scrollToBottom = () => {
         if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
       };
+      const handleMessageReceived = (event: any) => {
+        const newMessage = { message: event.data }
+        console.log(newMessage)
+        setMessages((prevMessages) => [...prevMessages, newMessage])
+    }
+      if (ws) {
+        ws.onmessage = handleMessageReceived
+    }
+    
     if (shouldRender === null) {
         return <Loading />
     }

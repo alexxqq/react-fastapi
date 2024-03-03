@@ -7,10 +7,8 @@ export const Nav = (props:any) => {
     const [input, setInput] = useState('')
     const shouldRender = props.shouldRender
     if (shouldRender === null) {
-        // Loading state or any other logic while waiting for verification
         return <Loading></Loading>;
       }
-      console.log('NAv Render-> ',shouldRender)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.target.value)
@@ -18,8 +16,7 @@ export const Nav = (props:any) => {
     const handleSearchSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
         window.location.href = `/search/${input}`
-        const response = await taskService.search(input)
-        console.log(response)
+        await taskService.search(input)
     }
     const logout = async () => {
         try {
