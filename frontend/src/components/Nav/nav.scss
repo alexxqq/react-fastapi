@@ -55,15 +55,6 @@ nav {
   display: flex;
   justify-content: space-between;
 }
-// nav a {
-//   font-size: 22px;
-//   cursor: pointer;
-//   color: #7a7e96;
-//   transition: color 0.3s ease;
-// }
-// nav a:hover {
-//   color: white;
-// }
 nav a {
   cursor: pointer;
   color: #fff;
@@ -83,7 +74,7 @@ nav a {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;  
+  align-items: flex-end;  
   gap:5%;
 }
 .search-button{
@@ -98,4 +89,25 @@ nav a {
 .search-button:hover{
   color: #ffffff!important;
   border: 2px solid #afafaf;
+}
+@media only screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    padding: 2%;
+  }
+
+  .inputBox_container {
+    max-width: 100%; /* Take full width on mobile */
+    margin-top: 1em;
+  }
+
+  .search-box {
+    gap: 2%; /* Adjust gap for smaller screens */
+  }
+
+  nav a {
+    padding: 10px; /* Adjust padding for better touch experience */
+    margin: 5px; /* Adjust margin for better spacing */
+    font-size: 18px; /* Adjust font size for readability */
+  }
 }

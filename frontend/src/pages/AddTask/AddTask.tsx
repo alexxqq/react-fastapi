@@ -13,14 +13,12 @@ const AddTask = () => {
         tags: '',
     })
     if (shouldRender === null) {
-        // Loading state or any other logic while waiting for verification
         return (<>
         <Loading></Loading>
         </>);
       }
     const HandleFormSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(formData)
 
         taskService.create(formData)
         window.location.href = '/'

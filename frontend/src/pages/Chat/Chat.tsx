@@ -62,7 +62,6 @@ export const Chat = () => {
       };
       const handleMessageReceived = (event: any) => {
         const newMessage = { message: event.data }
-        console.log(newMessage)
         setMessages((prevMessages) => [...prevMessages, newMessage])
     }
       if (ws) {

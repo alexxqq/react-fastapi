@@ -8,8 +8,6 @@ const Tasks = (props:any) => {
     const fetchTasks = async () => {
         const data = await taskService.readall()
         const response = data as unknown as tasks[]
-        console.log('what i need ->', data)
-        console.log('what i need ->', response)
 
         setTasks(response)
     }

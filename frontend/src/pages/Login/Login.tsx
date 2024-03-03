@@ -11,7 +11,6 @@ const Login = () => {
 
     const HandleFormSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(formData)
 
         try {
             await authService.login(formData)

@@ -14,6 +14,10 @@
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     width: 390px;
     padding-right: 0;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+        width: 80%; /* Full width on mobile */
+    }
 }
 
 .upper {
@@ -22,6 +26,9 @@
     padding: 0;
     padding-top: 15px;
     margin: 0;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+    }
 }
 
 .tag {
@@ -48,6 +55,9 @@
     &:active {
         transform: scale(0.95);
     }
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+    }
 }
 
 .task a {
@@ -72,6 +82,9 @@
     align-items: center;
     font-weight: 100;
     color: #ffffff;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+    }
 }
 
 .task p {
@@ -80,6 +93,10 @@
     color: rgb(180, 199, 219);
     overflow: auto;
     max-height: 100px;
+
+    @media only screen and (max-width: 600px) {
+        margin-right: 10px;
+    }
 }
 time {
     display: flex;
@@ -89,15 +106,24 @@ time {
     font-size: 12px;
     width: 140px;
     display: flex;
-    align-items:center;
+    align-items: center;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+    }
 }
 .user-text {
     font-size: 22px !important;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+    }
 }
 .upper-button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+    }
 }
 .close-button {
     background: none;
@@ -113,6 +139,10 @@ time {
     height: 20px;
     outline: none;
     margin: 0;
+    @media only screen and (max-width: 600px) {
+        /* Mobile styles */
+        font-size: 20px; /* Adjust font size on mobile */
+    }
 }
 
 .close-button:hover {

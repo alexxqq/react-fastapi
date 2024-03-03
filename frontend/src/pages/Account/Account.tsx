@@ -7,7 +7,6 @@ export const Account = () => {
     const user :any = shouldRender
     
     if (shouldRender === null) {
-        // Loading state or any other logic while waiting for verification
         return (<>
         <Loading></Loading>
         </>);
@@ -17,7 +16,6 @@ export const Account = () => {
         window.location.href = 'error404';
         return null;
       }
-      console.log('account should',shouldRender)
 
     return (
         <div className='track-hui'>
