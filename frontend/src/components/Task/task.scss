@@ -67,6 +67,10 @@
     color: #ffffff;
     margin: 0;
     font-weight: 800;
+    @media only screen and (max-width: 600px) {
+        font-weight: 600;
+        font-size: 18px;
+    }
 }
 
 .tags {
@@ -114,7 +118,8 @@ time {
 .user-text {
     font-size: 22px !important;
     @media only screen and (max-width: 600px) {
-        /* Mobile styles */
+        font-weight: 600;
+        font-size: 18px;
     }
 }
 .upper-button {

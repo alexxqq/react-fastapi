@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends
 from database import User, get_async_session
 from auth.base_config import fastapi_users
 from .models import Task, Tag, Task_Tag
-import json
+
 router = APIRouter(
     prefix="/tasks",
     tags=["Tasks"]
@@ -14,7 +14,7 @@ router = APIRouter(
 
 current_user = fastapi_users.current_user()
 
-
+@router.get('')
 @router.get('/')
 async def get_tasks(session: AsyncSession = Depends(get_async_session)):
     query = select(Task, User.email, User.id, User.username, Task_Tag.tag_id, Tag.tag_name).\
