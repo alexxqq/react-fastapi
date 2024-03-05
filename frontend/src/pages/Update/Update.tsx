@@ -20,8 +20,8 @@ export const Update = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
+                console.log(taskId.query)
                 let data: any = await taskService.getOne(taskId.query)
-                console.log(data)
                 if (data.length === 0) {
                     history.replace('/error404')
                     return null
