@@ -48,7 +48,6 @@ export class TaskService {
         },
     ) {
         const path =  `${TaskPath.Update}/${id}`
-        console.log(id)
         return this.httpService.put<string, addTask>(path, data, header)
     }
     async getOne(id:string) {

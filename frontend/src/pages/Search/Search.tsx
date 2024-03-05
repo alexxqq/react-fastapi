@@ -28,13 +28,10 @@ export const Search = () => {
 
         fetchData()
     }, [query])
-    if (shouldRender === null) {
-        return (<Loading />)
-    }
     return (
         <div className='track-hui'>
             <Nav shouldRender={shouldRender}></Nav>
-            {shouldRender ? (
+            {(shouldRender !== null ) ? (
                 <>
                     {searchResults.length !== 0 ? (
                         <>
