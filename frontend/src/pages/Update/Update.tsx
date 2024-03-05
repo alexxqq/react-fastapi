@@ -19,7 +19,13 @@ export const Update = () => {
         // Include other fields as needed
     })
     if (shouldRender === null) {
-        <Loading />
+        return (<>
+        <Loading></Loading>
+        </>);
+      }
+      if (!shouldRender) {
+        window.location.href = 'error404'
+        return null
     }
     useEffect(() => {
         const fetchData = async () => {
