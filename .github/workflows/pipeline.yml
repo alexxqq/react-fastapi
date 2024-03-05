@@ -63,6 +63,7 @@ jobs:
           git reset --hard HEAD &&
           git merge origin/master &&
           cd frontend &&
+          npm install &&
           npm run build &&
           sudo rm -rf /var/www/dist/ &&
           sudo cp -r dist/ /var/www/ 
