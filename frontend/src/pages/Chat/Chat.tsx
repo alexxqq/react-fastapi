@@ -4,7 +4,7 @@ import './chat.scss'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 import chatService from '../../services/chat.service'
-import { websocket } from '../../services/chat.service'
+
 interface Message {
     message: string
 }
@@ -13,7 +13,7 @@ export const Chat = () => {
     const shouldRender: any = useRenderVerification()
     const [messages, setMessages] = useState<Message[]>([])
     const [message, setMessage] = useState<string>()
-    const [ws, setWs] = useState<WebSocket | null>(null)
+    const [ws, setWs] = useState<boolean | null>(null)
     const chatContainerRef = useRef<HTMLUListElement>(null);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ export const Chat = () => {
     const handleMessage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (message && ws) {
-            ws.send(message)
+            chatService.sendMessage(message);
         }
         setMessage('')
     }
@@ -31,8 +31,8 @@ export const Chat = () => {
     useEffect(() => {
         if (shouldRender) {
             
-            const wsInstance = new WebSocket(`${websocket}/${shouldRender?.email}`)
-            setWs(wsInstance)
+            const websocket = chatService.connect(shouldRender.email, handleMessageReceived);
+            setWs(websocket)
         }
         fnccc()
     }, [shouldRender])
@@ -51,24 +51,17 @@ export const Chat = () => {
         }
 
         fetchData()
-
-
-
-
     }
+      const handleMessageReceived = (event: any) => {
+        const newMessage = { message: event.data }
+        setMessages((prevMessages) => [...prevMessages, newMessage])
+    }
+
     const scrollToBottom = () => {
         if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
       };
-      const handleMessageReceived = (event: any) => {
-        const newMessage = { message: event.data }
-        setMessages((prevMessages) => [...prevMessages, newMessage])
-    }
-      if (ws) {
-        ws.onmessage = handleMessageReceived
-    }
-    
     if (shouldRender === null) {
         return <Loading />
     }
