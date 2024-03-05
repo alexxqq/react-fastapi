@@ -169,3 +169,41 @@ time {
     outline: none;
     box-shadow: none;
 }
+.pencil-icon {
+    fill: #3498db; /* White fill color for the pencil icon */
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    margin-right: 5px; /* Optional: Add spacing between the icon and text */
+    transition: fill 2s ease;
+}
+.pencil-icon :hover{
+    fill: #a4dbff;
+}
+
+.update-delete{
+    display: flex;
+    flex-direction: column;
+}
+.update-button:active {
+    transform: scale(0.9); /* Add a small scale effect when the button is clicked */
+    border: none;
+}
+.update-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+.update-button {
+    background-color: transparent; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for better visual appearance */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it an inline block element */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    border-radius: 4px; /* Optional: Add rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-top: 15px;
+    margin-left: 10px;
+}

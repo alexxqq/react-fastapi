@@ -23,8 +23,8 @@ export class HttpService {
         return res.data
     }
 
-    async put<T, D>(url: string, data: D): Promise<T> {
-        const res = await axios.put<T>(this.getFullUrl(url), data, { withCredentials: true })
+    async put<T, D>(url: string, data: D, headers: any): Promise<T> {
+        const res = await axios.put<T>(this.getFullUrl(url), data,headers)
 
         return res.data
     }

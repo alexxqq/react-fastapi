@@ -3,4 +3,6 @@ export const enum TaskPath{
     ReadAll="tasks",
     Delete="tasks/delete",
     Create="tasks/add_task",
+    Update="tasks/update",
+    GetOne="tasks/getone",
 }
