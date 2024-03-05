@@ -23,8 +23,12 @@ export const Update = () => {
         const fetchData = async () => {
             if (taskId.query) {
                 let data: any = await taskService.getOne(taskId.query)
-                console.log(data)
+                if (data.length === 0){
+                    window.location.href = 'error404'
+                    return null
+                }
                 data = data[0]
+
                 data.tag = data.tag.join(' ')
                 setFormData({ name: data.name, description: data.description, tags: data.tag })
             }
