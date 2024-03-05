@@ -13,7 +13,7 @@ export const Chat = () => {
     const shouldRender: any = useRenderVerification()
     const [messages, setMessages] = useState<Message[]>([])
     const [message, setMessage] = useState<string>()
-    const [ws, setWs] = useState<boolean | null>(null)
+    const [ws, setWs] = useState<boolean>(false)
     const chatContainerRef = useRef<HTMLUListElement>(null);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,16 +30,19 @@ export const Chat = () => {
 
     useEffect(() => {
         if (shouldRender) {
-            
-            const websocket = chatService.connect(shouldRender.email, handleMessageReceived);
-            setWs(websocket)
+            const isConnected = chatService.connect(shouldRender.email, handleMessageReceived);
+            setWs(isConnected)
         }
-        fnccc()
+        fetchLastMessages()
+        return()=>{
+            chatService.disconnect()
+            setWs(false)
+        }
     }, [shouldRender])
     useLayoutEffect(() => {
         scrollToBottom();
       }, [messages]);
-    const fnccc = () => {
+    const fetchLastMessages = () => {
         const fetchData = async () => {
             try {
                 const response:any = await chatService.getLastMessages()

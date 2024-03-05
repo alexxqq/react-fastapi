@@ -28,6 +28,12 @@ export class ChatService {
           this.ws.send(message);
         }
       }
+      disconnect(): void {
+        if (this.ws) {
+          this.ws.close();
+          this.ws = null;
+        }
+      }
 }
 
 const chatService = new ChatService(new HttpService())
