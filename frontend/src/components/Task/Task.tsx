@@ -1,19 +1,17 @@
 import './task.scss'
 import { task } from '../../common/types/type'
 import taskService from '../../services/task.service'
-import { useNavigate } from 'react-router-dom'
 export const Task = (props: task) => {
-    const navigate =useNavigate()
 
     const delete_task = async (id : number) =>{
         
         await taskService.delete(id)
-        navigate('/',{replace:true})
+        window.location.href = '/'
 
     }
     const update_task = async (id: number) => {
 
-        navigate(`/update/${id}`,{replace:true})
+        window.location.href = `/update/${id}`
     }
     return (
         <div className='task'>

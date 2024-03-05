@@ -4,14 +4,12 @@ import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 import chatService from '../../services/chat.service'
 import { message } from '../../common/types/type'
-import { useNavigate } from 'react-router-dom'
 import './chat.scss'
 
 export const Chat = () => {
     const shouldRender: any = useRenderVerification()
     const [messages, setMessages] = useState<message[]>([])
     const [message, setMessage] = useState<string>()
-    const navigate = useNavigate()
     const [ws, setWs] = useState<boolean>(false)
     const chatContainerRef = useRef<HTMLUListElement>(null)
 
@@ -68,7 +66,7 @@ export const Chat = () => {
         return <Loading />
     }
     if (!shouldRender) {
-        navigate('/error404', { replace: true })
+        window.location.href = 'error404'
         return null
     }
     return (

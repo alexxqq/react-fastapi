@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Switch,Route } from 'react-router-dom';
 import { Path } from "../common/constants/path.enum";
 import { Home } from '../pages/Home/Home';
 import { SignUp } from '../pages/Signup/Signup';
@@ -14,17 +14,17 @@ import { Update } from '../pages/Update/Update'
 
 export const MainRouter = () => (
     <BrowserRouter>
-    <Routes>
-      <Route path={Path.HOME} element={<Home/>} />
-      <Route path={Path.LOGIN} element={<Login />} />
-      <Route path={Path.SIGNUP} element={<SignUp />} />
-      <Route path={Path.ACCOUNT} element={<Account />} />
-      <Route path={Path.ADDTASK} element={<AddTask />} />
-      <Route path={Path.SEARCH} element={<Search />} />
-      <Route path={Path.UPDATE} element={<Update />} />
-      <Route path="search" element={<Search />} />
-      <Route path={Path.CHAT} element={<Chat />} />
-      <Route path="*" element={<Error404 />} />
-    </Routes>
-  </BrowserRouter>
+        <Switch>
+            <Route exact path={Path.HOME} component={Home} />
+            <Route path={Path.LOGIN} component={Login} />
+            <Route path={Path.SIGNUP} component={SignUp} />
+            <Route path={Path.ACCOUNT} component={Account} /> 
+            <Route path={Path.ADDTASK} component={AddTask} /> 
+            <Route path={Path.SEARCH} component={Search} />
+            <Route path={Path.UPDATE} component={Update} />
+            <Route path='/search' component={Search} />
+            <Route path={Path.CHAT} component={Chat} />
+            <Route path="*" component={Error404} /> 
+        </Switch>
+    </BrowserRouter>
 )

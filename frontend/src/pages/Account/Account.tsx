@@ -3,12 +3,10 @@ import useRenderVerification from '../../Hooks/useVerification'
 import './account.scss'
 import { Loading } from '../Loading/Loading'
 import { user } from '../../common/types/type'
-import { useNavigate } from 'react-router-dom'
 
 export const Account = () => {
     const shouldRender:false|user|null = useRenderVerification();
     const user :user|null|boolean = shouldRender
-    const navigate = useNavigate();
     
     if (user === null) {
         return (<>
@@ -17,7 +15,7 @@ export const Account = () => {
       }
     
       if (!user) {
-        navigate('/error404', { replace: true })
+        window.location.href = 'error404';
         return null;
       }
 

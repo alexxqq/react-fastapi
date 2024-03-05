@@ -3,10 +3,7 @@ import authService from '../../services/auth.service'
 import { useState } from 'react'
 import './login.scss'
 import { Nav } from '../../components/Nav/Nav'
-import { useNavigate } from 'react-router-dom'
-
 const Login = () => {
-    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -18,7 +15,7 @@ const Login = () => {
         try {
             await authService.login(formData)
 
-            navigate('/',{replace:true})
+            window.location.href = '/'
         } catch (e) {
             window.alert(e)
         }

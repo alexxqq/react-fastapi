@@ -4,11 +4,10 @@ import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-import { useNavigate } from 'react-router-dom'
+
 
 export const Update = () => {
     const taskId: { query?: string } = useParams()
-    const navigate = useNavigate()
     const shouldRender = useRenderVerification()
     const [formData, setFormData] = useState({
         name: '',
@@ -20,12 +19,12 @@ export const Update = () => {
         const fetchData = async () => {
             if (taskId.query) {
                 if (isNaN(+taskId.query)) {
-                    navigate('/error404',{replace:true})
+                    window.location.href = '/error404'
                     return null
                 }
                 let data: any = await taskService.getOne(taskId.query)
                 if (data.length === 0) {
-                    navigate('/error404',{replace:true})
+                    window.location.href = '/error404'
                     return null
                 }
                 data = data[0]
@@ -51,7 +50,7 @@ export const Update = () => {
             if (taskId.query) {
                 taskService.update(taskId.query, formData)
             }
-            navigate('/',{replace:true})
+            window.location.href = '/'
         } catch (e) {
             console.log(e)
         }
@@ -64,7 +63,7 @@ export const Update = () => {
         )
     }
     if (!shouldRender) {
-        navigate('/error404',{replace:true})
+        window.location.href = '/error404'
         return null
     }
     return (
