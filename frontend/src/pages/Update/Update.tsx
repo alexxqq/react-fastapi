@@ -18,15 +18,7 @@ export const Update = () => {
         tags: '',
         // Include other fields as needed
     })
-    if (shouldRender === null) {
-        return (<>
-        <Loading></Loading>
-        </>);
-      }
-      if (!shouldRender) {
-        window.location.href = 'error404'
-        return null
-    }
+
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
@@ -62,7 +54,15 @@ export const Update = () => {
             console.log(e)
         }
     }
-
+    if (shouldRender === null) {
+        return (<>
+        <Loading></Loading>
+        </>);
+      }
+      if (!shouldRender) {
+        window.location.href = 'error404'
+        return null
+    }
     return (
         <div className='track-hui'>
             <Nav shouldRender={shouldRender} />
