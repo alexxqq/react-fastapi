@@ -9,9 +9,7 @@ export const Nav = (props:any) => {
     const [input, setInput] = useState('')
     const shouldRender = props.shouldRender
     const history = useHistory()
-    if (shouldRender === null) {
-        return <Loading></Loading>;
-      }
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.target.value)
@@ -30,7 +28,17 @@ export const Nav = (props:any) => {
         }
     }
 
-
+    if (shouldRender === null) {
+        return (
+            <>
+                <Loading></Loading>
+            </>
+        )
+    }
+    if (!shouldRender) {
+        history.replace('/')
+        return null
+    }
     return (
         <div className='nav-bar'>
             <nav>

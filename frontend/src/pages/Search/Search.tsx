@@ -33,7 +33,7 @@ export const Search = () => {
     return (
         <div className='track-hui'>
             <div>
-                <Nav></Nav>
+                <Nav shouldRender={shouldRender}></Nav>
                 { (searchResults.length !== 0) ? (
                   <>
                   {searchResults?.map((item: any) => (
