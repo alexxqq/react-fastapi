@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import taskService from '../../services/task.service'
 import useRenderVerification from '../../Hooks/useVerification'
-import { Loading } from '../Loading/Loading'
+
 export const Search = () => {
     const [searchResults, setSearchResults] = useState<any>([])
     const query: any = useParams()
