@@ -4,7 +4,7 @@ import './chat.scss'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 import chatService from '../../services/chat.service'
-import { websocket } from '../../common/constants/chat.endpoint'
+import { websocket } from '../../services/chat.service'
 interface Message {
     message: string
 }

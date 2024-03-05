@@ -1,6 +1,6 @@
 import { HttpService } from './http.service'
 import { ChatEndpoint } from '../common/constants/chat.endpoint'
-
+export const websocket = import.meta.env.WEBSOCKET
 export class ChatService {
     constructor(private httpService: HttpService) {}
 
