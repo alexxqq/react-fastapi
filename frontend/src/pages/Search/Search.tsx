@@ -10,9 +10,6 @@ export const Search = () => {
     const [searchResults, setSearchResults] = useState<any>([])
     const query: any = useParams()
     const shouldRender = useRenderVerification()
-    if (shouldRender === null) {
-        <Loading />
-    }
     const search = async (query: string) => {
         const result = await taskService.search(query)
         return result
