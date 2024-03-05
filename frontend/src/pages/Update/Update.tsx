@@ -21,7 +21,7 @@ export const Update = () => {
         const fetchData = async () => {
             if (taskId.query) {
                 let data: any = await taskService.getOne(taskId.query)
-                if (data.length === 0) {
+                if (data.length === 0 || !/^\d+$/.test(taskId.query)) {
                     history.replace('/error404')
                     return null
                 }
