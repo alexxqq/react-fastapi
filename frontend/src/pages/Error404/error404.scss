@@ -9,15 +9,15 @@
         #10131c,
         #1b1e2c,
         #232635
-    ); /* Complex gradient background */
+    ); 
 }
 
 .error-box h1 {
     font-size: 150px;
-    animation: bounce 1s infinite alternate; /* Bouncing animation */
-    color: #ffffff; /* Text color */
+    animation: bounce 1s infinite alternate; 
+    color: #ffffff; 
     @media only screen and (max-width: 600px) {
-        /* Mobile styles */
+
         font-size: 80px;
     }
 }

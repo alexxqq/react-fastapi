@@ -6,7 +6,6 @@ export type tasks = {
     description: string
     user: any
     id: number
-    
 }
 export type task = {
     date: string
@@ -15,10 +14,18 @@ export type task = {
     description: string
     user: any
     id: number
-    shouldRender :any
+    shouldRender: any
 }
 export type addTask = {
     name: string
     description: string
     tags: string
+}
+export type message = {
+    message: string
+}
+export type user = {
+    username: string
+    email: string
+    id: number
 }

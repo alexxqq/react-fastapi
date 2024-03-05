@@ -2,18 +2,22 @@ import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import './account.scss'
 import { Loading } from '../Loading/Loading'
+import { user } from '../../common/types/type'
+import { useNavigate } from 'react-router-dom'
+
 export const Account = () => {
-    const shouldRender:boolean|string|null = useRenderVerification();
-    const user :any = shouldRender
+    const shouldRender:false|user|null = useRenderVerification();
+    const user :user|null|boolean = shouldRender
+    const navigate = useNavigate();
     
-    if (shouldRender === null) {
+    if (user === null) {
         return (<>
         <Loading></Loading>
         </>);
       }
     
-      if (!shouldRender) {
-        window.location.href = 'error404';
+      if (!user) {
+        navigate('/error404', { replace: true })
         return null;
       }
 
@@ -23,8 +27,8 @@ export const Account = () => {
             <div className='user-wrapper'>
                 <div className='user-box'>
                     <img src='https://cojo.ru/wp-content/uploads/2022/12/danil-skriabin-1.webp' alt='avatar' className='profile-picture' />
-                    <h1>{user?.username}</h1>
-                    <h4>{user?.email}</h4>
+                    <h1>{user.username}</h1>
+                    <h4>{user.email}</h4>
                     <div className='interests'>
                         <h3>Interests:</h3>
                         <ul>

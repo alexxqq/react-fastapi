@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import authService from '../services/auth.service';
+import { user } from '../common/types/type';
 
 const useRenderVerification = () => {
-  const [shouldRender, setShouldRender] = useState<boolean | null | string>(null);
+  const [shouldRender, setShouldRender] = useState<false | null | user>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await authService.verify();
+        const result:any = await authService.verify();
 
 
         setShouldRender(result);

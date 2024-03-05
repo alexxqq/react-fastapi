@@ -1,15 +1,14 @@
-// Import necessary React and React Router components
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const Update = () => {
     const taskId: { query?: string } = useParams()
-    const history = useHistory()
+    const navigate = useNavigate()
     const shouldRender = useRenderVerification()
     const [formData, setFormData] = useState({
         name: '',
@@ -21,12 +20,12 @@ export const Update = () => {
         const fetchData = async () => {
             if (taskId.query) {
                 if (isNaN(+taskId.query)) {
-                    history.replace('/error404')
+                    navigate('/error404',{replace:true})
                     return null
                 }
                 let data: any = await taskService.getOne(taskId.query)
                 if (data.length === 0) {
-                    history.replace('/error404')
+                    navigate('/error404',{replace:true})
                     return null
                 }
                 data = data[0]
@@ -38,21 +37,21 @@ export const Update = () => {
         fetchData()
     }, [taskId])
 
-    const handleInputChange = (e: any) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         try {
             if (taskId.query) {
                 taskService.update(taskId.query, formData)
             }
-            window.location.href = '/'
+            navigate('/',{replace:true})
         } catch (e) {
             console.log(e)
         }
@@ -65,7 +64,7 @@ export const Update = () => {
         )
     }
     if (!shouldRender) {
-        window.location.href = 'error404'
+        navigate('/error404',{replace:true})
         return null
     }
     return (

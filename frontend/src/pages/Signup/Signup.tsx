@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Nav } from '../../components/Nav/Nav'
 import './signup.scss'
 import authService from '../../services/auth.service'
+import { useNavigate } from 'react-router-dom'
 
 export const SignUp = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -13,7 +15,7 @@ export const SignUp = () => {
         event.preventDefault()
         try{
             await authService.registration(formData)
-            window.location.href = '/'
+            navigate('/',{replace:true})
         }
         catch(e:any){
             window.alert(`Error: ${e}`)

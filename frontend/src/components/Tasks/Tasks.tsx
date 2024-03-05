@@ -1,9 +1,9 @@
 import { Task } from '../Task/Task'
 import './tasks.scss'
 import { useState, useEffect } from 'react'
-import { tasks } from '../../common/types/type'
+import { tasks, user } from '../../common/types/type'
 import taskService from '../../services/task.service'
-const Tasks = (props:any) => {
+const Tasks = (props:{shouldRender:false|null|user}) => {
     const [tasks, setTasks] = useState<tasks[]>([])
     const fetchTasks = async () => {
         const data = await taskService.readall()
