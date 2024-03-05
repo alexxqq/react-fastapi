@@ -29,3 +29,11 @@ export type user = {
     email: string
     id: number
 }
+export type taskRaw = {
+    date: string
+    tags: string[]
+    name: string
+    description: string
+    user: user
+    id: number
+}

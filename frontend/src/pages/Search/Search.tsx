@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import taskService from '../../services/task.service'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
+
 export const Search = () => {
     const shouldRender = useRenderVerification()
     const [searchResults, setSearchResults] = useState<any>([])
@@ -21,7 +22,7 @@ export const Search = () => {
                 const response = await search(query.query)
                 setSearchResults(response)
             } catch (error) {
-                console.error('Error fetching search results:', error)
+                console.error('Error during search')
             }
         }
 

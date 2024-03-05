@@ -28,9 +28,12 @@ const AddTask = () => {
     }
     const HandleFormSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-
-        taskService.create(formData)
-        history.replace('/')
+        try {
+            taskService.create(formData)
+            history.replace('/')
+        } catch (e) {
+            console.error('Error during adding task.')
+        }
     }
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({

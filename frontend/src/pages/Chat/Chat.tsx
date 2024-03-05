@@ -3,12 +3,12 @@ import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 import chatService from '../../services/chat.service'
-import { message } from '../../common/types/type'
+import { message, user } from '../../common/types/type'
 import { useHistory } from 'react-router-dom'
 import './chat.scss'
 
 export const Chat = () => {
-    const shouldRender: any = useRenderVerification()
+    const shouldRender: false|user|null = useRenderVerification()
     const history = useHistory()
     const [messages, setMessages] = useState<message[]>([])
     const [message, setMessage] = useState<string>()
@@ -48,7 +48,7 @@ export const Chat = () => {
                 const data: message[] = await response
                 setMessages(data)
             } catch (error) {
-                console.error('Error fetching data:', error)
+                console.error('Error getting messages.')
             }
         }
 

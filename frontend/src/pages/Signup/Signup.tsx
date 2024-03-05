@@ -19,8 +19,8 @@ export const SignUp = () => {
             await authService.login({username:formData.email,password:formData.password})
             history.replace('/')
         }
-        catch(e:any){
-            window.alert(`Error: ${e}`)
+        catch(e){
+            window.alert('Error during registration or login.')
         }
         
     }

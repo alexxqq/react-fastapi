@@ -19,7 +19,7 @@ const Login = () => {
 
             history.replace('/')
         } catch (e) {
-            window.alert(e)
+            console.error('Error during login.')
         }
     }
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

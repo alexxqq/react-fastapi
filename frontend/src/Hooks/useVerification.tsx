@@ -13,7 +13,7 @@ const useRenderVerification = () => {
 
         setShouldRender(result);
       } catch (error) {
-        console.error('Error during verification:', error);
+        console.error('Error during verification.');
         setShouldRender(false);
   
       }

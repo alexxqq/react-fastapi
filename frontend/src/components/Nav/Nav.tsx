@@ -24,7 +24,7 @@ export const Nav = (props:any) => {
             await authService.logout()
             history.replace('/')
         } catch (e) {
-            window.alert(e)
+            console.error('Error during logout.')
         }
     }
 

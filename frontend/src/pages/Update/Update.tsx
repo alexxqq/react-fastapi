@@ -56,7 +56,7 @@ export const Update = () => {
             }
             history.replace('/')
         } catch (e) {
-            console.log(e)
+            console.error('Error during updating task.')
         }
     }
     if (shouldRender === null) {
