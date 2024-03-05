@@ -8,7 +8,7 @@ export const Task = (props: task) => {
     const delete_task = async (id : number) =>{
         
         await taskService.delete(id)
-        history.replace('/')
+        history.go(0)
 
     }
     const update_task = async (id: number) => {
