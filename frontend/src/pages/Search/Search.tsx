@@ -6,13 +6,12 @@ import { useEffect, useState } from 'react'
 import taskService from '../../services/task.service'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
+
 export const Search = () => {
+    const shouldRender = useRenderVerification()
     const [searchResults, setSearchResults] = useState<any>([])
     const query: any = useParams()
-    const shouldRender = useRenderVerification()
-    if (shouldRender === null) {
-        <Loading />
-    }
+
     const search = async (query: string) => {
         const result = await taskService.search(query)
         return result
@@ -29,32 +28,38 @@ export const Search = () => {
 
         fetchData()
     }, [query])
-
+    if (shouldRender === null) {
+        ;<Loading />
+    }
     return (
         <div className='track-hui'>
-            <div>
-                <Nav shouldRender={shouldRender}></Nav>
-                { (searchResults.length !== 0) ? (
-                  <>
-                  {searchResults?.map((item: any) => (
-                    <Task
-                        shouldRender={shouldRender}
-                        name={item.name}
-                        description={item.description}
-                        date={item.date}
-                        tags={item.tag}
-                        user={item.user}
-                        key={item.id}
-                        id={item.id}
-                    />
-                ))}</>
-                ):(
-                  <div className='search-results-container'>
-                    <p className="no-results-message">No results found. Try a different search term.</p>
-                  </div>
-                )}
-                
-            </div>
+            <Nav shouldRender={shouldRender}></Nav>
+            {shouldRender ? (
+                <>
+                    {searchResults.length !== 0 ? (
+                        <>
+                            {searchResults?.map((item: any) => (
+                                <Task
+                                    shouldRender={shouldRender}
+                                    name={item.name}
+                                    description={item.description}
+                                    date={item.date}
+                                    tags={item.tag}
+                                    user={item.user}
+                                    key={item.id}
+                                    id={item.id}
+                                />
+                            ))}
+                        </>
+                    ) : (
+                        <div className='search-results-container'>
+                            <p className='no-results-message'>No results found. Try a different search term.</p>
+                        </div>
+                    )}
+                </>
+            ) : (
+                <></>
+            )}
         </div>
     )
 }
