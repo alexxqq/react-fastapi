@@ -3,9 +3,12 @@ import authService from '../../services/auth.service'
 import React, { useState } from 'react'
 import taskService from '../../services/task.service'
 import { Loading } from '../../pages/Loading/Loading'
+import { useHistory } from 'react-router-dom'
+
 export const Nav = (props:any) => {
     const [input, setInput] = useState('')
     const shouldRender = props.shouldRender
+    const history = useHistory()
     if (shouldRender === null) {
         return <Loading></Loading>;
       }
@@ -15,13 +18,13 @@ export const Nav = (props:any) => {
     }
     const handleSearchSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-        window.location.href = `/search/${input}`
+        history.replace(`/search/${input}`)
         await taskService.search(input)
     }
     const logout = async () => {
         try {
             await authService.logout()
-            window.location.href = '/'
+            history.replace('/')
         } catch (e) {
             window.alert(e)
         }

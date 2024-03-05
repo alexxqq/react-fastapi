@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Nav } from '../../components/Nav/Nav'
 import './signup.scss'
 import authService from '../../services/auth.service'
+import { useHistory } from 'react-router-dom'
 
 
 export const SignUp = () => {
+    const history = useHistory()
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -14,7 +16,8 @@ export const SignUp = () => {
         event.preventDefault()
         try{
             await authService.registration(formData)
-            window.location.href = '/'
+            await authService.login({username:formData.email,password:formData.password})
+            history.replace('/')
         }
         catch(e:any){
             window.alert(`Error: ${e}`)

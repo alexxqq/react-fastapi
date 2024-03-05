@@ -1,17 +1,19 @@
 import './task.scss'
 import { task } from '../../common/types/type'
 import taskService from '../../services/task.service'
-export const Task = (props: task) => {
+import { useHistory } from 'react-router-dom'
 
+export const Task = (props: task) => {
+    const history = useHistory()
     const delete_task = async (id : number) =>{
         
         await taskService.delete(id)
-        window.location.href = '/'
+        history.replace('/')
 
     }
     const update_task = async (id: number) => {
-
-        window.location.href = `/update/${id}`
+        
+        history.replace(`/update/${id}`)
     }
     return (
         <div className='task'>

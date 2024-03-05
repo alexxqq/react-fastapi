@@ -5,9 +5,11 @@ import './addtask.scss'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
+import { useHistory } from 'react-router-dom'
 
 const AddTask = () => {
     const shouldRender = useRenderVerification()
+    const history = useHistory()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -21,14 +23,14 @@ const AddTask = () => {
         )
     }
     if (!shouldRender) {
-        window.location.href = '/error404'
+        history.replace('/error404')
         return null
     }
     const HandleFormSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         taskService.create(formData)
-        window.location.href = '/'
+        history.replace('/')
     }
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({

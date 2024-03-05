@@ -54,7 +54,7 @@ export const Update = () => {
             if (taskId.query) {
                 taskService.update(taskId.query, formData)
             }
-            window.location.href = '/'
+            history.replace('/')
         } catch (e) {
             console.log(e)
         }
@@ -67,7 +67,7 @@ export const Update = () => {
         )
     }
     if (!shouldRender) {
-        window.location.href = '/error404'
+        history.replace('/')
         return null
     }
     return (
