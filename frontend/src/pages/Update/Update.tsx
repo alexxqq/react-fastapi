@@ -5,26 +5,24 @@ import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-// Assume you have a TaskService for making API requests
-
-// UpdateTaskPage component
+import { useHistory } from "react-router-dom";
 
 export const Update = () => {
-    const taskId: { query?: string } = useParams() // Extract taskId from the URL
+    const taskId: { query?: string } = useParams()
+    let history = useHistory()
     const shouldRender = useRenderVerification()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         tags: '',
-        // Include other fields as needed
     })
 
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
                 let data: any = await taskService.getOne(taskId.query)
-                if (data.length === 0){
-                    window.location.href = 'error404'
+                if (data.length === 0) {
+                    history.push('error404')
                     return null
                 }
                 data = data[0]
@@ -36,7 +34,6 @@ export const Update = () => {
         fetchData()
     }, [taskId])
 
-    // Handle form input changes
     const handleInputChange = (e: any) => {
         setFormData({
             ...formData,
@@ -44,11 +41,9 @@ export const Update = () => {
         })
     }
 
-    // Handle form submission
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        // Make an API request to update the task
         try {
             if (taskId.query) {
                 taskService.update(taskId.query, formData)
@@ -59,11 +54,13 @@ export const Update = () => {
         }
     }
     if (shouldRender === null) {
-        return (<>
-        <Loading></Loading>
-        </>);
-      }
-      if (!shouldRender) {
+        return (
+            <>
+                <Loading></Loading>
+            </>
+        )
+    }
+    if (!shouldRender) {
         window.location.href = 'error404'
         return null
     }
