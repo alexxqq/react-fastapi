@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
+import { Loading } from '../Loading/Loading'
 // Assume you have a TaskService for making API requests
 
 // UpdateTaskPage component
@@ -17,7 +18,9 @@ export const Update = () => {
         tags: '',
         // Include other fields as needed
     })
-
+    if (shouldRender === null) {
+        <Loading />
+    }
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
