@@ -22,7 +22,7 @@ This project is a full-stack web application that combines FastAPI on the backen
 ### Backend (FastAPI)
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/fastapi-react-vite-crud-chat.git
+    git clone git@github.com:alexxqq/react-fastapi.git
     ```
 
 2. **Navigate to the `backend` directory:**
