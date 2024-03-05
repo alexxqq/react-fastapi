@@ -16,8 +16,6 @@ export class HttpService {
     }
 
     async post<T, D>(url: string, data: D, headers: any): Promise<T> {
-        console.log(data)
-        console.log(headers)
         const res = await axios.post<T>(this.getFullUrl(url), data, headers)
 
         return res.data
