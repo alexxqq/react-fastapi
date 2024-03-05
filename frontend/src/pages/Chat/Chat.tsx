@@ -3,9 +3,8 @@ import { Nav } from '../../components/Nav/Nav'
 import './chat.scss'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-import { ChatEndpoint } from '../../common/constants/chat.endpoint'
 import chatService from '../../services/chat.service'
-
+import { websocket } from '../../common/constants/chat.endpoint'
 interface Message {
     message: string
 }
@@ -31,7 +30,7 @@ export const Chat = () => {
 
     useEffect(() => {
         if (shouldRender) {
-            const wsInstance = new WebSocket(`${ChatEndpoint.WebSocket}/${shouldRender?.email}`)
+            const wsInstance = new WebSocket(`${websocket}/${shouldRender?.email}`)
             setWs(wsInstance)
         }
         fnccc()

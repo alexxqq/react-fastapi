@@ -1,4 +1,7 @@
 backend/venv
 backend/src/__pycache__
+backend/src/auth/__pycache__
+backend/src/chat/__pycache__
+backend/src/tasks/__pycache__
 frontend/node_modules
 backend/.env

@@ -6,9 +6,6 @@ from config import DB_HOST,DB_NAME,DB_PASS,DB_PORT,DB_USER
 metadata = MetaData()
 Base = declarative_base()
 
-# Define your model
-
-
 class User(Base):
     __tablename__ = 'user'
 
