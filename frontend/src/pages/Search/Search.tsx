@@ -5,11 +5,14 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import taskService from '../../services/task.service'
 import useRenderVerification from '../../Hooks/useVerification'
-
+import { Loading } from '../Loading/Loading'
 export const Search = () => {
     const [searchResults, setSearchResults] = useState<any>([])
     const query: any = useParams()
     const shouldRender = useRenderVerification()
+    if (shouldRender === null) {
+        <Loading />
+    }
     const search = async (query: string) => {
         const result = await taskService.search(query)
         return result
@@ -30,7 +33,7 @@ export const Search = () => {
     return (
         <div className='track-hui'>
             <div>
-                <Nav shouldRender={shouldRender}></Nav>
+                <Nav></Nav>
                 { (searchResults.length !== 0) ? (
                   <>
                   {searchResults?.map((item: any) => (
