@@ -1,7 +1,7 @@
 import './nav.scss'
 import authService from '../../services/auth.service'
 import React, { useState } from 'react'
-import taskService from '../../services/task.serive'
+import taskService from '../../services/task.service'
 import { Loading } from '../../pages/Loading/Loading'
 export const Nav = (props:any) => {
     const [input, setInput] = useState('')
