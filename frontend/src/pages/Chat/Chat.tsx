@@ -26,6 +26,7 @@ export const Chat = () => {
         if (message && ws) {
             ws.send(message)
         }
+        setMessage('')
     }
 
     useEffect(() => {

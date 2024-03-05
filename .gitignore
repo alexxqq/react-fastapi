@@ -2,5 +2,3 @@ backend/venv
 backend/src/__pycache__
 frontend/node_modules
 backend/.env
-fastapiKEY
-fastapiKEY.pub
