@@ -8,7 +8,7 @@ import chatService from '../../services/chat.service'
 interface Message {
     message: string
 }
-const websocket = import.meta.env.WEBSOCKET
+
 export const Chat = () => {
     const shouldRender: any = useRenderVerification()
     const [messages, setMessages] = useState<Message[]>([])
@@ -30,6 +30,7 @@ export const Chat = () => {
 
     useEffect(() => {
         if (shouldRender) {
+            const websocket = chatService.getURL() 
             const wsInstance = new WebSocket(`${websocket}/${shouldRender?.email}`)
             setWs(wsInstance)
         }
