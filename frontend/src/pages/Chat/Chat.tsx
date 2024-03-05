@@ -4,11 +4,11 @@ import './chat.scss'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 import chatService from '../../services/chat.service'
-import { websocket } from '../../services/chat.service'
+
 interface Message {
     message: string
 }
-
+const websocket = import.meta.env.WEBSOCKET
 export const Chat = () => {
     const shouldRender: any = useRenderVerification()
     const [messages, setMessages] = useState<Message[]>([])
