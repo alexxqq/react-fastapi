@@ -20,7 +20,7 @@ export const Update = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
-                console.log(taskId.query)
+                console.log(isNaN(+(taskId.query)))
                 let data: any = await taskService.getOne(taskId.query)
                 if (data.length === 0) {
                     history.replace('/error404')
