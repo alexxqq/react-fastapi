@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 
 export const Update = () => {
     const taskId: { query?: string } = useParams()
-    let history = useHistory()
+    const history = useHistory()
     const shouldRender = useRenderVerification()
     const [formData, setFormData] = useState({
         name: '',
@@ -21,7 +21,7 @@ export const Update = () => {
         const fetchData = async () => {
             if (taskId.query) {
                 let data: any = await taskService.getOne(taskId.query)
-                if (data.length === 0 || isNaN(+taskId.query)) {
+                if (data.length === 0 || (!/^\d+$/.test(taskId.query))) {
                     history.replace('/error404')
                     return null
                 }
