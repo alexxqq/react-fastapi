@@ -28,7 +28,9 @@ jobs:
           cd 
           cd fastAPI 
           cd react-fastapi &&
-          git pull origin master &&
+          git fetch &&
+          git reset --hard HEAD &&
+          git merge origin/master &&
           cd backend/src &&
           sudo docker kill FastAPI &&
           sudo docker rm FastAPI &&
@@ -57,7 +59,9 @@ jobs:
           npm install node@latest &&
           cd deploy &&
           cd react-fastapi &&
-          git pull origin master &&
+          git fetch &&
+          git reset --hard HEAD &&
+          git merge origin/master &&
           cd frontend &&
           npm run build &&
           sudo rm -rf /var/www/dist/ &&
