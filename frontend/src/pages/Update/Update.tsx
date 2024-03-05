@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
+import useRenderVerification from '../../Hooks/useVerification'
 // Assume you have a TaskService for making API requests
 
 // UpdateTaskPage component
 
 export const Update = () => {
     const taskId: { query?: string } = useParams() // Extract taskId from the URL
+    const shouldRender = useRenderVerification()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -54,7 +56,7 @@ export const Update = () => {
 
     return (
         <div className='track-hui'>
-            <Nav />
+            <Nav shouldRender={shouldRender} />
             <div className='formWrapper'>
                 <div>
                     <div className='info'>
