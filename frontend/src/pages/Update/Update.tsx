@@ -20,12 +20,12 @@ export const Update = () => {
             if (taskId.query) {
                 if (isNaN(+taskId.query)) {
                     window.location.href = '/error404'
-                    return null
+                    return <Loading/>
                 }
                 let data: any = await taskService.getOne(taskId.query)
                 if (data.length === 0) {
                     window.location.href = '/error404'
-                    return null
+                    return <Loading/>
                 }
                 data = data[0]
 
