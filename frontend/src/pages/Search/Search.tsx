@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import taskService from '../../services/task.service'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-
 export const Search = () => {
     const shouldRender = useRenderVerification()
     const [searchResults, setSearchResults] = useState<any>([])
@@ -29,7 +28,7 @@ export const Search = () => {
         fetchData()
     }, [query])
     if (shouldRender === null) {
-        ;<Loading />
+        return (<Loading />)
     }
     return (
         <div className='track-hui'>
