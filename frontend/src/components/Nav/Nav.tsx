@@ -35,10 +35,6 @@ export const Nav = (props:any) => {
             </>
         )
     }
-    if (!shouldRender) {
-        history.replace('/')
-        return null
-    }
     return (
         <div className='nav-bar'>
             <nav>
