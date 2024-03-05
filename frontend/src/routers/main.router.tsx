@@ -8,6 +8,7 @@ import { Error404 } from '../pages/Error404/Eror404'
 import AddTask from '../pages/AddTask/AddTask'
 import { Search } from '../pages/Search/Search'
 import { Chat } from '../pages/Chat/Chat'
+import { Update } from '../pages/Update/Update'
 
 export const MainRouter = () => (
     <BrowserRouter>
@@ -19,6 +20,7 @@ export const MainRouter = () => (
             <Route path={Path.ADDTASK} component={AddTask} />
             <Route path={Path.SEARCH} component={Search} />
             <Route path={Path.CHAT} component={Chat} />
+            <Route path={Path.UPDATE} component={Update} />
             <Route path='*' component={Error404} />
         </Switch>
     </BrowserRouter>

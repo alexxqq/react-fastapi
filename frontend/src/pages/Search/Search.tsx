@@ -3,7 +3,7 @@ import { Nav } from '../../components/Nav/Nav'
 import { Task } from '../../components/Task/Task'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import taskService from '../../services/task.serive'
+import taskService from '../../services/task.service'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
 export const Search = () => {
@@ -36,7 +36,7 @@ export const Search = () => {
                 <Nav shouldRender={shouldRender}></Nav>
                 { (searchResults.length !== 0) ? (
                   <>
-                  {searchResults.map((item: any) => (
+                  {searchResults?.map((item: any) => (
                     <Task
                         shouldRender={shouldRender}
                         name={item.name}

@@ -29,6 +29,25 @@ export class TaskService {
       const path = `${TaskPath.Search}/${query}`
       return this.httpService.get<string>(path)
   }
+  async update(
+    id:string,
+    data: addTask,
+    header: Record<string, unknown> = {
+        withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+        },
+    },
+) {
+    const path =  `${TaskPath.Update}/${id}`
+    console.log(id)
+    return this.httpService.put<string, addTask>(path, data, header)
+}
+async getOne(id:string) {
+    const path = `${TaskPath.GetOne}/${id}`
+    return this.httpService.get<string>(path)
+}
   }
 
 const taskService = new TaskService(new HttpService())

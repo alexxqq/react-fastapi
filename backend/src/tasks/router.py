@@ -1,12 +1,12 @@
 from datetime import datetime
 from .schemas import AddTask
-from sqlalchemy import select, delete as delete_sql
+from sqlalchemy import select,update, delete as delete_sql
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
 from database import User, get_async_session
 from auth.base_config import fastapi_users
 from .models import Task, Tag, Task_Tag
-import json
+
 router = APIRouter(
     prefix="/tasks",
     tags=["Tasks"]
@@ -43,7 +43,6 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
 
 @router.post('/')
 async def add_task(task: AddTask, user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):
-    print(task)
     tags = task.tags
     name = task.name
     description = task.description
@@ -127,3 +126,68 @@ async def delete(id: int, user: User = Depends(current_user), session: AsyncSess
     await session.commit()
 
     return {'status': 'succesful delete'}
+
+@router.put('/update/{id}')
+async def update(id: int,updateData:AddTask ,user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):
+
+    name = updateData.name
+    description=updateData.description
+    tags = updateData.tags
+
+    tag_names = [i for i in tags.split(' ') if len(i)]
+    task = await session.execute(select(Task).filter(Task.id == id))
+    task = task.scalar_one_or_none()
+    if task.user_id != user.id:
+        return {'status':'error, wrong user'}
+    if task is None:
+        return {'status':'error, no task'}
+    task.name = name
+    task.description = description
+    existing_tags = await session.execute(select(Task_Tag).filter(Task_Tag.task_id == id))
+    existing_tags = existing_tags.scalars().all()
+    for existing_tag in existing_tags:
+        await session.delete(existing_tag)
+    for tag_name in tag_names:
+        # Check if the tag already exists in the database
+        tag = await session.execute(select(Tag).filter(Tag.tag_name == tag_name))
+        tag= tag.scalar_one_or_none()
+        if not tag:
+            # If the tag doesn't exist, create a new one
+            tag = Tag(tag_name=tag_name)
+            session.add(tag)
+            await session.flush()
+
+        # Link the task with tags in the Task_Tag linking table
+        task_tag_entry = Task_Tag(tag_id=tag.id, task_id=task.id)
+        session.add(task_tag_entry)
+
+    await session.commit()
+
+
+    return {'update':'success'}
+
+@router.get('/getone/{id}')
+async def getonetask(id:int,session: AsyncSession = Depends(get_async_session)):
+    query = select(Task, User.email, User.id, User.username, Task_Tag.tag_id, Tag.tag_name).where(Task.id==id).\
+    join(User).\
+    outerjoin(Task_Tag, Task.id == Task_Tag.task_id).\
+    outerjoin(Tag, Task_Tag.tag_id == Tag.id)
+
+    result = await session.execute(query)
+
+    rows = result.fetchall()
+    tasks = []
+    for task, user_email, user_id, username, tag_id, tag_name in rows:
+        # If the task is not already in the tasks list, add it
+        if task.id not in {t.id for t in tasks}:
+            task.user = {'username': username,
+                         'email': user_email, 'id': user_id}
+            task.tag = []  # Initialize the tag list for the task
+            tasks.append(task)
+
+        # If there is a tag for the current row, add it to the task's tag list
+        if tag_id is not None:
+            tasks[-1].tag.append(tag_name)
+
+    return tasks
+    

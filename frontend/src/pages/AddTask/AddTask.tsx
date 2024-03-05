@@ -1,5 +1,5 @@
 import React from 'react'
-import taskService from '../../services/task.serive'
+import taskService from '../../services/task.service'
 import { useState } from 'react'
 import './addtask.scss'
 import { Nav } from '../../components/Nav/Nav'

@@ -7,4 +7,5 @@ export const enum Path{
     ADDTASK="/add_task",
     SEARCH="/search/:query",
     CHAT="/chat",
+    UPDATE="/update/:query",
 }
