@@ -4,27 +4,31 @@ import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-
+import { useHistory } from 'react-router-dom'
 
 export const Update = () => {
     const taskId: { query?: string } = useParams()
+    const history = useHistory()
     const shouldRender = useRenderVerification()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         tags: '',
     })
-
+    if (taskId.query && isNaN(+taskId.query)) {
+        history.replace('/error404')
+        return <Loading/>
+    }
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
                 if (isNaN(+taskId.query)) {
-                    window.location.href = '/error404'
+                    history.replace('/error404')
                     return <Loading/>
                 }
                 let data: any = await taskService.getOne(taskId.query)
                 if (data.length === 0) {
-                    window.location.href = '/error404'
+                    history.replace('/error404')
                     return <Loading/>
                 }
                 data = data[0]
