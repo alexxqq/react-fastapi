@@ -22,7 +22,7 @@ export const Update = () => {
             if (taskId.query) {
                 let data: any = await taskService.getOne(taskId.query)
                 if (data.length === 0) {
-                    history.push('./error404')
+                    history.replace('/error404')
                     return null
                 }
                 data = data[0]
