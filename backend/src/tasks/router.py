@@ -27,14 +27,14 @@ async def get_tasks(session: AsyncSession = Depends(get_async_session)):
     rows = result.fetchall()
     tasks = []
     for task, user_email, user_id, username, tag_id, tag_name in rows:
-        # If the task is not already in the tasks list, add it
+
         if task.id not in {t.id for t in tasks}:
             task.user = {'username': username,
                          'email': user_email, 'id': user_id}
-            task.tag = []  # Initialize the tag list for the task
+            task.tag = []  
             tasks.append(task)
 
-        # If there is a tag for the current row, add it to the task's tag list
+
         if tag_id is not None:
             tasks[-1].tag.append(tag_name)
 
@@ -48,16 +48,16 @@ async def add_task(task: AddTask, user: User = Depends(current_user), session: A
     description = task.description
 
     tag_names = [i for i in tags.split(' ') if len(i)]
-    # List to store Tag objects associated with the task
+
     tag_objects = []
 
     for tag_name in tag_names:
-        # Check if the tag already exists in the database
+
         tag = await session.execute(select(Tag).filter(Tag.tag_name == tag_name))
         tag = tag.scalar_one_or_none()
 
         if not tag:
-            # If the tag doesn't exist, create a new one
+
             tag = Tag(tag_name=tag_name)
             session.add(tag)
             await session.flush()
@@ -69,7 +69,7 @@ async def add_task(task: AddTask, user: User = Depends(current_user), session: A
     session.add(new_task)
     await session.flush()
 
-    # Manually link the task with tags in the Task_Tag linking table!!
+    # link the task with tags in the Task_Tag linking table!!
     for tag in tag_objects:
         task_tag_entry = Task_Tag(tag_id=tag.id, task_id=new_task.id)
         session.add(task_tag_entry)
@@ -98,14 +98,14 @@ async def search(query: str, session: AsyncSession = Depends(get_async_session))
     rows = result.fetchall()
     tasks = []
     for task, user_email, user_id, username, tag_id, tag_name in rows:
-        # If the task is not already in the tasks list, add it
+
         if task.id not in {t.id for t in tasks}:
             task.user = {'username': username,
                          'email': user_email, 'id': user_id}
-            task.tag = []  # Initialize the tag list for the task
+            task.tag = []  
             tasks.append(task)
 
-        # If there is a tag for the current row, add it to the task's tag list
+
         if tag_id is not None:
             tasks[-1].tag.append(tag_name)
 
@@ -149,16 +149,15 @@ async def update(id: int,updateData:AddTask ,user: User = Depends(current_user),
     for existing_tag in existing_tags:
         await session.delete(existing_tag)
     for tag_name in tag_names:
-        # Check if the tag already exists in the database
+
         tag = await session.execute(select(Tag).filter(Tag.tag_name == tag_name))
         tag= tag.scalar_one_or_none()
         if not tag:
-            # If the tag doesn't exist, create a new one
+
             tag = Tag(tag_name=tag_name)
             session.add(tag)
             await session.flush()
 
-        # Link the task with tags in the Task_Tag linking table
         task_tag_entry = Task_Tag(tag_id=tag.id, task_id=task.id)
         session.add(task_tag_entry)
 
@@ -179,17 +178,17 @@ async def getonetask(id:int,session: AsyncSession = Depends(get_async_session)):
     rows = result.fetchall()
     tasks = []
     for task, user_email, user_id, username, tag_id, tag_name in rows:
-        # If the task is not already in the tasks list, add it
+
         if task.id not in {t.id for t in tasks}:
             task.user = {'username': username,
                          'email': user_email, 'id': user_id}
-            task.tag = []  # Initialize the tag list for the task
+            task.tag = [] 
             tasks.append(task)
 
-        # If there is a tag for the current row, add it to the task's tag list
+
         if tag_id is not None:
             tasks[-1].tag.append(tag_name)
 
-    
+
 
     return tasks

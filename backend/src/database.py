@@ -1,11 +1,12 @@
-from typing import AsyncGenerator,List
-#from operations.models import Task
+from typing import AsyncGenerator
 from fastapi import Depends
-from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase,SQLAlchemyBaseUserTable
+from fastapi_users.db import  SQLAlchemyUserDatabase,SQLAlchemyBaseUserTable
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase,mapped_column,Mapped,relationship
+from sqlalchemy.orm import DeclarativeBase,mapped_column,Mapped
 from sqlalchemy import Integer,Column,String,Boolean
-DATABASE_URL = "postgresql+asyncpg://postgres:postgres@16.171.23.55/postgres"
+from config import DB_HOST,DB_NAME,DB_PASS,DB_PORT,DB_USER
+
+DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 #ss2
 class Base(DeclarativeBase):

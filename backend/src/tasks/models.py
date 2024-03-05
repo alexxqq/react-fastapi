@@ -1,28 +1,28 @@
-from datetime import datetime
-from sqlalchemy import Table, Column, Integer, String,create_engine, TIMESTAMP, MetaData,ForeignKey
+from sqlalchemy import Column, Integer, String, create_engine, TIMESTAMP, MetaData, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker,Mapped,mapped_column,relationship
+from sqlalchemy.orm import sessionmaker, Mapped, mapped_column, relationship
 from database import User
-from typing import List
+from config import DB_HOST,DB_NAME,DB_PASS,DB_PORT,DB_USER
+
 metadata = MetaData()
 Base = declarative_base()
 
+
 class Task_Tag(Base):
-  __tablename__ = 'task_tag'
-  tag_id: Mapped[int] = mapped_column(
+    __tablename__ = 'task_tag'
+    tag_id: Mapped[int] = mapped_column(
         ForeignKey("tags.id", ondelete="CASCADE"),
         primary_key=True,
     )
-  task_id: Mapped[int] = mapped_column(   
+    task_id: Mapped[int] = mapped_column(
         ForeignKey("tasks.id", ondelete="CASCADE"),
         primary_key=True,
     )
 
 
-
 class Task(Base):
     __tablename__ = 'tasks'
-    id = Column(Integer, primary_key=True,autoincrement= True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     description = Column(String, nullable=False)
     date = Column(TIMESTAMP, nullable=False)
@@ -32,10 +32,11 @@ class Task(Base):
         secondary="task_tag",
     )
 
-    user_id: Mapped[int] = mapped_column(ForeignKey(User.id,ondelete='CASCADE'))
-    
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey(User.id, ondelete='CASCADE'))
+
     def __str__(self):
-       return {'id':self.id,'name':self.name,'description':self.description,'date':self.date,'user_id':self.user_id,'tags':self.tags}
+        return {'id': self.id, 'name': self.name, 'description': self.description, 'date': self.date, 'user_id': self.user_id, 'tags': self.tags}
 
 
 class Tag(Base):
@@ -45,11 +46,11 @@ class Tag(Base):
         back_populates="tags",
         secondary="task_tag",
     )
-    tag_name = Column(String,nullable= False)
-    id: Mapped[int] = mapped_column(primary_key=True,autoincrement= True)
+    tag_name = Column(String, nullable=False)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
 
-DATABASE_URL = "postgresql://postgres:postgres@16.171.23.55:5432/postgres"
+DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 engine = create_engine(DATABASE_URL)
 
 # Bind the engine to the metadata

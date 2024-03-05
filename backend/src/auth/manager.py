@@ -4,8 +4,8 @@ from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin
 
 from database import User, get_user_db
-
-SECRET = "secret"
+from config import SECRET_AUTH
+SECRET = SECRET_AUTH
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):

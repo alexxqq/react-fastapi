@@ -1,17 +1,10 @@
-from fastapi import Depends, FastAPI, Cookie
+from fastapi import  FastAPI
 from tasks.router import router as tasks_router
-from pydantic import BaseModel, Field
-from typing import List, Optional
-from fastapi import FastAPI, APIRouter
-from fastapi_users import FastAPIUsers, fastapi_users
-from auth.base_config import auth_backend, fastapi_users
-from auth.manager import get_user_manager
-from auth.schemas import UserCreate, UserRead
-from database import User
-from redis import asyncio as aioredis
 from fastapi import FastAPI
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.redis import RedisBackend
+from fastapi_users import  fastapi_users
+from auth.base_config import auth_backend, fastapi_users
+from auth.schemas import UserCreate, UserRead
+from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from chat.router import router as router_chat

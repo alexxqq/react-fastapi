@@ -5,7 +5,7 @@ import taskService from '../../services/task.service'
 import { Nav } from '../../components/Nav/Nav'
 import useRenderVerification from '../../Hooks/useVerification'
 import { Loading } from '../Loading/Loading'
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 export const Update = () => {
     const taskId: { query?: string } = useParams()
@@ -20,7 +20,7 @@ export const Update = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (taskId.query) {
-                if(isNaN(+(taskId.query))){
+                if (isNaN(+taskId.query)) {
                     history.replace('/error404')
                     return null
                 }
