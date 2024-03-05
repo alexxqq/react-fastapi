@@ -2,7 +2,7 @@ import { Task } from '../Task/Task'
 import './tasks.scss'
 import { useState, useEffect } from 'react'
 import { tasks } from '../../common/types/type'
-import taskService from '../../services/task.serive'
+import taskService from '../../services/task.service'
 const Tasks = (props:any) => {
     const [tasks, setTasks] = useState<tasks[]>([])
     const fetchTasks = async () => {

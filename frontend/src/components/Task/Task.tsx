@@ -1,6 +1,6 @@
 import './task.scss'
 import { task } from '../../common/types/type'
-import taskService from '../../services/task.serive'
+import taskService from '../../services/task.service'
 export const Task = (props: task) => {
 
     const delete_task = async (id : number) =>{
