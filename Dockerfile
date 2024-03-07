@@ -1,6 +1,6 @@
 FROM python:3.11.7-slim
 
-WORKDIR /backebnd/src
+WORKDIR /backend/src
 
 COPY . /backend/src
 
