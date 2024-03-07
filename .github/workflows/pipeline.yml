@@ -1,73 +1,3 @@
-# name: deployReactFastAPI 
- 
-# 'on': 
-#   workflow_call: null 
-#   workflow_dispatch: null 
-#   push: 
-#     branches: 
-#       - master 
-# jobs: 
-#   DeployFastAPI: 
-#     name: Deploying FastAPI 
-#     runs-on: ubuntu-latest 
-#     steps: 
-#       - uses: actions/checkout@v2 
-#       - name: FastAPIDeploy 
-#         env: 
-#           SSH_KEY: ${{secrets.FASTAPI_KEY_SSH}}  
-#         run: | 
- 
-#           echo $SSH_KEY | tr ' ' '\n' | base64 --decode > key1.pem 
- 
-#           chmod 400 key1.pem 
-#           ssh -o StrictHostKeyChecking=no -i "key1.pem" ubuntu@ec2-13-60-10-27.eu-north-1.compute.amazonaws.com ' 
- 
-#           cd .ssh 
-#           eval $(ssh-agent -s) 
-#           ssh-add ec2FastAPI 
-#           cd 
-#           cd fastAPI 
-#           cd react-fastapi &&
-#           git fetch &&
-#           git reset --hard HEAD &&
-#           git merge origin/master &&
-#           cd backend/src 
-#           sudo docker kill FastAPI 
-#           sudo docker rm FastAPI 
-#           sudo docker rmi src-web 
-#           sudo docker compose up -d 
-#           ' 
- 
-#   DeployReact:  
-#     name: Deploying React 
-#     runs-on: ubuntu-latest 
-#     steps: 
-#       - uses: actions/checkout@v2 
-#       - name: ReactDeploy 
-#         env: 
-#           SSH_KEY: ${{secrets.FASTAPI_KEY_SSH}} 
-#         run: | 
-#           echo $SSH_KEY | tr ' ' '\n' | base64 --decode > key1.pem 
-#           chmod 400 key1.pem 
-#           ssh -o StrictHostKeyChecking=no -i "key1.pem" ubuntu@ec2-51-20-60-12.eu-north-1.compute.amazonaws.com ' 
-           
-#           cd .ssh 
-#           eval $(ssh-agent -s) 
-#           ssh-add ec2React 
-#           cd
-           
-#           npm install node@latest &&
-#           cd deploy &&
-#           cd react-fastapi &&
-#           git fetch &&
-#           git reset --hard HEAD &&
-#           git merge origin/master &&
-#           cd frontend &&
-#           npm install &&
-#           npm run build &&
-#           sudo rm -rf /var/www/dist/ &&
-#           sudo cp -r dist/ /var/www/ 
-#           '
 name: deployReactFastAPI 
  
 'on': 
@@ -107,3 +37,15 @@ jobs:
           echo $SSH_KEY | tr ' ' '\n' | base64 --decode > key1.pem
           chmod 400 key1.pem
           ssh -o StrictHostKeyChecking=no -i "key1.pem" $USERNAME@$HOST_NAME './deploy.sh'
+  DeployReact:  
+    name: Deploying React 
+    runs-on: ubuntu-latest 
+    steps: 
+      - uses: actions/checkout@v2 
+      - name: ReactDeploy 
+        env: 
+          SSH_KEY: ${{secrets.FASTAPI_KEY_SSH}} 
+        run: | 
+          echo $SSH_KEY | tr ' ' '\n' | base64 --decode > key1.pem 
+          chmod 400 key1.pem 
+          ssh -o StrictHostKeyChecking=no -i "key1.pem" ubuntu@ec2-51-20-60-12.eu-north-1.compute.amazonaws.com './deploy.sh'
