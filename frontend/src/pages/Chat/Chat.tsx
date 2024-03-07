@@ -41,6 +41,9 @@ export const Chat = () => {
     useLayoutEffect(() => {
         scrollToBottom()
     }, [messages])
+    useLayoutEffect(() => {
+        scrollToBottom()
+    }, [])
     const fetchLastMessages = () => {
         const fetchData = async () => {
             try {
