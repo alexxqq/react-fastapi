@@ -40,7 +40,7 @@ export const Chat = () => {
     }, [shouldRender])
     useLayoutEffect(() => {
         scrollToBottom()
-    }, [messages])
+    }, [messages,])
     useLayoutEffect(() => {
         scrollToBottom()
     }, [])
