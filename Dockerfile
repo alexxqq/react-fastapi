@@ -1,7 +1,7 @@
 FROM python:3.11.7-slim
 
-WORKDIR /backend/src
+WORKDIR /src
 
-COPY . /backend/src
+COPY backend/src /src
 
 RUN pip3 install -r requirements.txt
