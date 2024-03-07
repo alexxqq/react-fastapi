@@ -92,7 +92,8 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - name: push to ECR
         run: | 
-          cd /backend/src
+          pwd
+          ll
           docker build -t reactfastapi .
           docker tag reactfastapi:latest 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi
           docker push 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi:latest
