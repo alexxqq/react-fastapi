@@ -100,7 +100,7 @@ jobs:
           docker push 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi:latest
       - name: Connect to instance and deploy
         env: 
-          SSH_KEY: ${{ secrets.KEY_SSH }} 
+          SSH_KEY: ${{ secrets.KEY_SSH_PEM }} 
           HOST_NAME: ${{ secrets.BACK_HOST }}
           USERNAME: ${{ secrets.BACK_USERNAME }}
         run: |
