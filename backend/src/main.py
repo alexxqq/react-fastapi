@@ -30,6 +30,8 @@ origins = ["http://localhost:5173",
            "https://deployment.pp.ua",
            "https://alexxqqq.space",
            "http://alexxqqq.space",
+           "https://back.api.kubernetis.fun",
+           "http://back.api.kubernetis.fun",
            ]
 
 current_user = fastapi_users.current_user()

@@ -1,13 +1,13 @@
 import './nav.scss'
 import authService from '../../services/auth.service'
 import React, { useState } from 'react'
-import taskService from '../../services/task.service'
 import { Loading } from '../../pages/Loading/Loading'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 export const Nav = (props:any) => {
     const [input, setInput] = useState('')
     const shouldRender = props.shouldRender
+    const location = useLocation()
     const history = useHistory()
 
 
@@ -17,12 +17,16 @@ export const Nav = (props:any) => {
     const handleSearchSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
         history.replace(`/search/${input}`)
-        await taskService.search(input)
     }
     const logout = async () => {
         try {
             await authService.logout()
-            history.replace('/')
+            if (location.pathname === '/'){
+                history.go(0)
+            }
+            else{
+                history.replace('/')
+            }
         } catch (e) {
             console.error('Error during logout.')
         }

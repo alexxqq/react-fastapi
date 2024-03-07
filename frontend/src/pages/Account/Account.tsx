@@ -26,16 +26,15 @@ export const Account = () => {
             <Nav shouldRender={shouldRender}></Nav>
             <div className='user-wrapper'>
                 <div className='user-box'>
-                    <img src='https://cojo.ru/wp-content/uploads/2022/12/danil-skriabin-1.webp' alt='avatar' className='profile-picture' />
-                    <h1>{user.username}</h1>
+                    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCoxWc5ukrkkaNHBArZt7YJq15_xWWDb4NdQ&usqp=CAU' alt='avatar' className='profile-picture' />
+                    <h2>Welcome to your profile, <span className='username'>{user.username}</span></h2>
                     <h4>{user.email}</h4>
                     <div className='interests'>
-                        <h3>Interests:</h3>
-                        <ul>
-                            <li>Suck lolipop</li>
-                        </ul>
+                    <p>
+      Here, you can view your account information. Take a moment to
+      explore your details.
+    </p>
                     </div>
-                    <button>Edit Profile</button>
                 </div>
             </div>
         </div>
