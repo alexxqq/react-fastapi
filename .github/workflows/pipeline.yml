@@ -81,6 +81,8 @@ jobs:
     name: Deploying FastAPI 
     runs-on: ubuntu-latest 
     steps: 
+      - name: Git checkout
+        uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -92,7 +94,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
       - name: push to ECR
         run: | 
-          docker build -t reactfastapi .
+          docker build -t reactfastapi backend/src/Dockerfile
           docker tag reactfastapi:latest 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi:latest
           docker push 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi:latest
       - name: Connect to instance and deploy
