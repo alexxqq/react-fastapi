@@ -93,7 +93,7 @@ jobs:
       - name: push to ECR
         run: | 
           pwd
-          l
+          ls
           docker build -t reactfastapi .
           docker tag reactfastapi:latest 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi
           docker push 428264194238.dkr.ecr.eu-north-1.amazonaws.com/reactfastapi:latest
