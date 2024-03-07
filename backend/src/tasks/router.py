@@ -65,7 +65,7 @@ async def add_task(task: AddTask, user: User = Depends(current_user), session: A
         tag_objects.append(tag)
 
     new_task = Task(name=name, description=description,
-                    date=datetime.now().now(), user_id=user.id)
+                    date=datetime.now(), user_id=user.id)
     session.add(new_task)
     await session.flush()
 
